@@ -29,6 +29,7 @@ class ProductController extends Controller
             }
         }
         return view('produk.index', compact('rs', 'hotel'));
+        // return view('produk.index', compact('rs', 'hotel'));
         //dd($product); -> Untuk Debugging
         //return view('produk.index', ['datas' => $product, 'hotel' => $hotel]);
     }
