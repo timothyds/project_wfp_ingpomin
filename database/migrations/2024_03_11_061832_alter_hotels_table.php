@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('types',function (Blueprint $table){
-            $table->string('name');
+        Schema::table('hotels', function (Blueprint $table) {
+            $table->foreign('hotel_type_id')->references('id')->on('hotel_types');
         });
     }
 
@@ -21,8 +18,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('types', function (Blueprint $table){
-            $table->dropColumn(['name']);
+        Schema::table('hotels', function (Blueprint $table) {
+            $table->dropForeign(['hotel_type_id']);
         });
     }
 };

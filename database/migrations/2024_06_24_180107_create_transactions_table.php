@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products',function(Blueprint $table){
-            $table->unsignedBigInteger('hotel_id');
-            $table->foreign('hotel_id')->references('id')->on('products');
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
+            $table->dateTime('transaction_date');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function(Blueprint $table){
-            $table->dropForeign(['hotel_id']);
-            $table->dropColumn(['hotel_id']);
-        });
+        Schema::dropIfExists('transactions');
     }
 };

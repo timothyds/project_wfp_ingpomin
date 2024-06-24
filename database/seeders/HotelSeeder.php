@@ -12,9 +12,14 @@ class HotelSeeder extends Seeder
     public function run(): void
     {
         DB::table('hotels')->insert([
-            'name' => Str::random(20),
-            'address' => Str::random(20),
-            'address2' => Str::random(20),
+            [
+                'name' => 'On The Beach',
+                'address' => '337 E Beach Blvd',
+                'phone' => '1 913 6516000',
+                'email' => 'info@yourdomain.com',
+                'rating' => ,
+                'type_id' => '3',
+            ],
         ]);
     }
 }
