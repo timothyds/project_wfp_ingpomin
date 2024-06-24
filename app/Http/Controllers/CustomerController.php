@@ -31,8 +31,8 @@ class CustomerController extends Controller
     {
         //dd($request);
         $request->validate([
-            'name'=>'required',
-            'address'=>'required',
+            'name' => 'required',
+            'address' => 'required',
 
         ]);
         // Type::create($request->all());
@@ -40,9 +40,10 @@ class CustomerController extends Controller
         $data = new Customer();
         $data->name = $request->get('name');
         $data->address = $request->get('address');
+        $data->point = 0;
         $data->save();
 
-        return redirect('customer')->with('status','Berhasil Ditambah!');
+        return redirect('customer')->with('status', 'Berhasil Ditambah!');
     }
 
     /**
@@ -59,7 +60,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $data = Customer::find($id);
-        return view('customer.edit',compact('data'));
+        return view('customer.edit', compact('data'));
     }
 
     /**

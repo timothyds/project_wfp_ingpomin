@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Type extends Model
+class Hotel_Types extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    public function hotels(){
+    protected $table = "hotel_types";
+
+    public function hotels()
+    {
         return $this->hasMany(Hotel::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Hotel_Types;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        $tipes = Type::all();
+        $tipes = Hotel_Types::all();
         return view('hotel.create', compact('tipes'));
     }
 
@@ -70,7 +71,7 @@ class HotelController extends Controller
     public function edit($id)
     {
         $datas = Hotel::find($id);
-        $tipes = Type::all();
+        $tipes = Hotel_Types::all();
         return view('hotel.edit', compact('datas', 'tipes'));
     }
 
