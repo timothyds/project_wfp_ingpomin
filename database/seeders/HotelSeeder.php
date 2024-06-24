@@ -18,7 +18,7 @@ class HotelSeeder extends Seeder
                 'phone' => '1 913 6516000',
                 'email' => 'info@yourdomain.com',
                 'rating' => '4',
-                'type_id' => '3',
+                'hotel_type_id' => '3',
             ],
         ]);
     }
