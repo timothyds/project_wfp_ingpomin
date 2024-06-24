@@ -446,7 +446,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                               <i class="fa fa-key">{{ __('Logout') }}</i> 
+                                <i class="fa fa-key">{{ __('Logout') }}</i>
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -519,17 +519,18 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="title">Customer</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ url('produk') }}">
+                    <li class="open">
+                        <a href="javascript:;">
                             <i class="icon-bar-chart"></i>
                             <span class="title">Product</span>
+                            <span class="arrow  open"></span>
                         </a>
-                    </li>
-                    <li class="last ">
-                        <a href="login.html">
-                            <i class="icon-user"></i>
-                            <span class="title">Login</span>
-                        </a>
+                        <ul class="sub-menu" style="display: block;">
+                            <li>
+                                <a href="{{ url('produk') }}">
+                                    List Product</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
