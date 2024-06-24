@@ -1,4 +1,4 @@
-@extends('layouts.conquer2')
+@extends('layouts.frontend')
 @section('content')
 <a class="btn btn-success" href="{{route('transaction.create')}}">+ New Transaction</a>
 <a href="#modalCreateCust" data-toggle="modal" class="btn btn-info">+ New Transaction(with Modals)</a>

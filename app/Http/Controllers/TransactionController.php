@@ -62,6 +62,37 @@ class TransactionController extends Controller
         $total = $request->get('total');
         DB::insert('INSERT INTO product_transaction (product_id,transaction_id,quantity,subtotal) values (?,?,?,?)', [$product_id, $newIdTrans, $qty, $total]);
 
+        // ----------------------- Start Nomor 2 ----------------------- //
+        // $poin = 0;
+
+        // // Variable untuk menyimpan data dari checkbox redemption
+        // $redemption = false;
+        // $product = DB::table('products')->where('id', $product_id)->first();
+        // $poinCustomer = DB::table('customers')->where('id', $request->get('cust'))->value('point');
+
+        // // Ngecek apakah checkbox redemption tercentang
+        // if ($redemption == true) {
+
+        //     // Konversi dari total belanjaan jadi poin
+        //     $total = round($total / 100000);
+        //     $poinCustomer = $poinCustomer - $total;
+
+        //     // Update poin customer
+        //     $cust = Customer::find($request->get('cust'));
+        //     $cust->point = $poinCustomer;
+        //     $cust->save();
+        // } else {
+        //     if ($product == "deluxe" || $product == "superior" || $product == "suite") {
+        //         $poin += 5;
+        //     } else {
+        //         $poin += 1;
+        //     }
+        //     $cust = Customer::find($request->get('cust'));
+        //     $cust->point += $poin;
+        //     $cust->save();
+        // }
+        // ----------------------- End Nomor 2 ----------------------- //
+
         return redirect('transaction')->with('status', 'Berhasil Ditambah!');
     }
 
@@ -175,5 +206,4 @@ class TransactionController extends Controller
             'msg' => 'Transaction data is removed !'
         ), 200);
     }
-    
 }

@@ -61,6 +61,8 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
+                                    <a href="{{url('customer')}}" class="dropdown-item">Customer</a>
+                                    <a href="{{url('transaction')}}" class="dropdown-item">Transaction</a>
                                     <a href="wishlist.html" class="dropdown-item">Wishlist</a>
                                     <a href="{{url('hotel')}}" class="dropdown-item">List Hotel</a>
                                     <a href="login.html" class="dropdown-item">Login & Register</a>
@@ -90,7 +92,7 @@
                     <div class="col-md-3">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="{{asset('img/logo.png')}}"alt="Logo">
+                                <img src="{{asset('assets/img/logo.png')}}"alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -117,13 +119,23 @@
         </div>
         <!-- Bottom Bar End -->  
         
+        @php
+        $pageName = 'Product';
+        if (Request::is('customer')) {
+            $pageName = 'Customer';
+        }
+        elseif (Request::is('hotel')) {
+            $pageName = 'Hotel';
+        }
+        @endphp
+
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active">Product List</li>
+                    <li class="breadcrumb-item active">{{$pageName}}</li>
                 </ul>
             </div>
         </div>
