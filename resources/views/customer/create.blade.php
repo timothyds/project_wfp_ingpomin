@@ -1,17 +1,19 @@
 @extends('layouts.conquer2')
 
 @section('content')
-<form method="POST" action="{{route('customer.store')}}">
-    @csrf
-    <div class="form-group">
-        <label for="exampleInputEmail1">Input Customer</label>
-        <input type="text" name="name" class="form-control" id="tipetxt" aria-describedby="tipeHelp" placeholder="Enter Customer Name">
-        <small id="tipeHelp" class="form-text text-muted">Please determine your customer name.</small>
-        <input type="text" name="address" class="form-control" id="addresstxt" aria-describedby="tipeHelp" placeholder="Enter Address">
-        <small id="tipeHelp" class="form-text text-muted">Please determine your customer address.</small>
-    </div>
-    <a class="btn btn-primary" href="{{url()->previous()}}">Cancel</a>
+    <form method="POST" action="{{ route('customer.store') }}">
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1">Input Customer</label>
+            <input type="text" name="name" class="form-control" id="tipetxt" aria-describedby="tipeHelp"
+                placeholder="Enter Customer Name">
+            <small id="tipeHelp" class="form-text text-muted">Please determine your customer name.</small>
+            <input type="text" name="address" class="form-control" id="addresstxt" aria-describedby="tipeHelp"
+                placeholder="Enter Address">
+            <small id="tipeHelp" class="form-text text-muted">Please determine your customer address.</small>
+        </div>
+        <a class="btn btn-primary" href="{{ url()->previous() }}">Cancel</a>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 @endsection
