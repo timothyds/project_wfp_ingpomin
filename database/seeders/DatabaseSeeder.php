@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             FacilitySeeder::class,
             HotelSeeder::class,
             ProductSeeder::class,
+            FacilityProductSeeder::class,
         ]);
     }
 }
