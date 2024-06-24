@@ -1,4 +1,4 @@
-@extends('layouts.conquer2')
+@extends('layouts.frontend')
 @section('content')
 <div class='row'>
   <a class="btn btn-success" href="{{route('produk.create')}}">+ New Product</a>

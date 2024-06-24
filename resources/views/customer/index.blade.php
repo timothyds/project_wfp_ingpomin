@@ -1,6 +1,7 @@
-@extends('layouts.conquer2')
+@extends('layouts.frontend')
 
 @section('content')
+<div class="container-fluid">
 <a class="btn btn-success" href="{{route('customer.create')}}">+ New Customer</a>
 <a href="#modalCreateCust" data-toggle="modal" class="btn btn-info">+ New Customer(with Modals)</a>
 @csrf
@@ -77,6 +78,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 @endsection
 

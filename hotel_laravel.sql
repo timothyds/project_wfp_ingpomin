@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 06:50 PM
+-- Generation Time: Jun 24, 2024 at 11:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,17 +32,24 @@ CREATE TABLE `customers` (
   `name` varchar(100) NOT NULL,
   `address` varchar(200) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Abac', 'aa', NULL, NULL),
-(2, 'Kala', 'adaddad', NULL, NULL),
-(3, 'Timothy', 'Jl. Astaganaga', '2024-05-20 04:37:29', '2024-05-20 04:37:29');
+INSERT INTO `customers` (`id`, `name`, `address`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Abang Jago', 'Dimana lah', NULL, '2024-05-29 03:13:13', NULL),
+(2, 'Kala', 'adaddad', NULL, '2024-05-25 14:28:52', '2024-05-25 14:28:52'),
+(3, 'Timothy', 'Jl. Astaganaga', '2024-05-20 04:37:29', '2024-05-20 04:37:29', NULL),
+(4, 'Customerlah', 'Jl wwalawee', '2024-05-20 19:36:30', '2024-05-25 14:27:32', '2024-05-25 14:27:32'),
+(5, 'Seseorangaja', 'JLLALALAL', '2024-05-25 14:28:30', '2024-05-25 14:28:38', '2024-05-25 14:28:38'),
+(6, 'Mister IUS', 'Jalan misterius', '2024-05-25 14:29:16', '2024-05-25 14:29:16', NULL),
+(7, 'Misis Ius', 'Jalan MISISISIUS', '2024-05-25 14:29:28', '2024-06-04 05:03:59', '2024-06-04 05:03:59'),
+(8, 'apa', 'apaaan', '2024-05-29 03:27:45', '2024-05-29 03:29:17', '2024-05-29 03:29:17'),
+(9, 'coba', 'cobaoan', '2024-05-29 03:29:08', '2024-05-29 03:29:14', '2024-05-29 03:29:14');
 
 -- --------------------------------------------------------
 
@@ -74,20 +81,24 @@ CREATE TABLE `hotels` (
   `image` varchar(100) NOT NULL,
   `hotel_type` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `hotels`
 --
 
-INSERT INTO `hotels` (`id`, `name`, `address`, `city`, `image`, `hotel_type`, `created_at`, `updated_at`) VALUES
-(1, 'Hotel A', 'Jalan A', 'Surabaya', 'hotel.jpg', '1', NULL, NULL),
-(2, 'Hotel B', 'Jalan B', 'Malang', 'hotel1.jpg', '1', NULL, NULL),
-(3, 'Hotel C', 'Jl.Kemana saja', 'Sidoarjo', 'hotel2.jpg', '2', '2024-03-25 13:38:50', '2024-03-25 13:38:50'),
-(4, 'Hotel D', 'Jl. Bersamamu', 'Singaraja', 'hotel3.jpeg', '', '2024-03-25 13:38:50', '2024-03-25 13:38:50'),
-(5, 'Five Points', 'Jl. Raya Menukik', 'Surabaya', 'hotel4.jpg', 'Anjay', '2024-05-09 19:34:18', '2024-05-09 19:34:18'),
-(6, 'Test', 'f', 'f', 'jj', '3', '2024-05-20 05:02:09', '2024-05-20 05:02:09');
+INSERT INTO `hotels` (`id`, `name`, `address`, `city`, `image`, `hotel_type`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Hotel A', 'Jalan A', 'Sidoarjo', '1718082263_hotel.jpg', '1', NULL, '2024-06-11 05:04:23', NULL),
+(2, 'Hotel B', 'Jalan B', 'Malang', 'hotel1.jpg', '1', NULL, NULL, NULL),
+(3, 'Hotel C', 'Jl.Kemana saja', 'Sidoarjo', 'hotel2.jpg', '2', '2024-03-25 13:38:50', '2024-03-25 13:38:50', NULL),
+(4, 'Hotel D', 'Jl. Bersamamu', 'Singaraja', 'hotel3.jpeg', '2', '2024-03-25 13:38:50', '2024-03-25 13:38:50', NULL),
+(5, 'Five Points', 'Jl. Raya Menukik', 'Surabaya', 'hotel4.jpg', '4', '2024-05-09 19:34:18', '2024-05-21 08:18:48', '2024-05-21 08:18:48'),
+(6, 'Test', 'f', 'f', 'jj', '3', '2024-05-20 05:02:09', '2024-05-20 05:02:09', NULL),
+(7, 'Hotel Merdeka', 'Jl. Tanjangan Semerbak', 'Sidoarjo', 'merdeka.jpg', '3', '2024-05-20 19:45:51', '2024-05-20 19:45:51', NULL),
+(8, 'Hotel Kematian', 'Jl. Neraka', 'Kota kematian', 'kematian.jpg', '2', '2024-05-20 19:48:14', '2024-05-20 19:48:14', NULL),
+(9, 'Hotel Juang Edit', 'Jl. Perjuangan Edit', 'Kota Perjuangan Edit', 'juang.jpg', '2', '2024-05-20 19:48:52', '2024-05-21 05:10:04', '2024-05-21 05:10:04');
 
 -- --------------------------------------------------------
 
@@ -160,6 +171,7 @@ CREATE TABLE `products` (
   `available_room` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `hotel_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -167,13 +179,16 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `image`, `available_room`, `created_at`, `updated_at`, `hotel_id`) VALUES
-(1, 'Kamar A', 1300000, 'kamar.jpg', 17, NULL, NULL, 1),
-(2, 'Kamar B', 950000, 'kamar2.jpg', 6, NULL, NULL, 1),
-(3, 'Kamar C', 750000, 'kamar3.jpg', 10, NULL, NULL, 2),
-(4, 'Kamar D', 500000, '', 12, '2024-03-25 13:46:28', '2024-03-25 13:46:28', 3),
-(5, 'Kamar E', 440000, '', 7, '2024-03-25 13:46:28', '2024-03-25 13:46:28', 4),
-(6, 'Kamar OalahDalah', 599000, 'kamaroalah.jpg', 20, '2024-05-20 05:17:57', '2024-05-20 05:17:57', 5);
+INSERT INTO `products` (`id`, `name`, `price`, `image`, `available_room`, `created_at`, `updated_at`, `deleted_at`, `hotel_id`) VALUES
+(1, 'Kamar A', 1250000, 'kamar.jpg', 17, NULL, '2024-05-27 15:10:54', NULL, 1),
+(2, 'Kamar B', 950000, 'kamar2.jpg', 6, NULL, NULL, NULL, 1),
+(3, 'Kamar C', 750000, 'kamar3.jpg', 10, NULL, NULL, NULL, 2),
+(4, 'Kamar D', 500000, '', 12, '2024-03-25 13:46:28', '2024-05-29 04:13:37', NULL, 3),
+(5, 'Kamar E', 440000, '', 9, '2024-03-25 13:46:28', '2024-05-29 04:13:28', NULL, 4),
+(6, 'Kamar OalahDalah', 599000, 'kamaroalah.jpg', 20, '2024-05-20 05:17:57', '2024-05-25 15:06:28', '2024-05-25 15:06:28', 5),
+(7, 'Kamar Mencoba Edit', 70000, 'kamarcoba.jpg', 16, '2024-05-20 19:52:08', '2024-05-25 15:06:22', NULL, 8),
+(8, 'Kamar Walaaa', 135000, 'wala.jpg', 20, '2024-05-28 03:09:46', '2024-05-29 04:16:33', NULL, 8),
+(9, 'HotelMODALIN', 450600, 'modalin.jpg', 10, '2024-05-29 03:57:01', '2024-05-29 04:12:45', '2024-05-29 04:12:45', 7);
 
 -- --------------------------------------------------------
 
@@ -194,7 +209,14 @@ CREATE TABLE `product_transaction` (
 
 INSERT INTO `product_transaction` (`product_id`, `transaction_id`, `quantity`, `subtotal`) VALUES
 (1, 1, 1, 1300000),
-(2, 2, 1, 950000);
+(2, 2, 1, 950000),
+(3, 16, 2, 1500000),
+(4, 13, 2, 1000000),
+(4, 15, 1, 500000),
+(6, 14, 2, 1398000),
+(7, 11, 1, 70000),
+(7, 18, 1, 0),
+(8, 17, 3, 405000);
 
 -- --------------------------------------------------------
 
@@ -206,19 +228,35 @@ CREATE TABLE `transactions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `transaction_date` datetime DEFAULT current_timestamp(),
+  `transaction_date` timestamp NULL DEFAULT current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `transaction_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2024-05-07 06:45:11', NULL, NULL),
-(2, 2, 1, '2024-05-07 06:45:11', NULL, NULL),
-(3, 2, 2, '0000-00-00 00:00:00', '2024-05-20 09:44:59', '2024-05-20 09:44:59');
+INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `transaction_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 2, '2024-05-06 23:45:11', NULL, NULL, NULL),
+(2, 2, 1, '2024-05-06 23:45:11', NULL, NULL, NULL),
+(3, 2, 2, '0000-00-00 00:00:00', '2024-05-20 09:44:59', '2024-05-20 09:44:59', NULL),
+(4, 3, 2, NULL, '2024-05-20 19:35:10', '2024-06-03 15:01:03', '2024-06-03 15:01:03'),
+(5, 2, 1, '2024-05-21 02:35:44', '2024-05-20 19:35:44', '2024-05-20 19:35:44', NULL),
+(6, 2, 2, '2024-05-21 02:38:26', '2024-05-20 19:38:26', '2024-05-20 19:38:26', NULL),
+(7, 3, 2, '2024-05-22 05:53:21', '2024-05-22 05:53:21', '2024-05-22 05:53:21', NULL),
+(8, 3, 2, '2024-05-22 06:22:25', '2024-05-22 06:22:25', '2024-05-22 06:22:25', NULL),
+(9, 1, 1, '2024-05-22 06:24:30', '2024-05-22 06:24:30', '2024-05-22 06:24:30', NULL),
+(10, 1, 1, '2024-05-22 06:24:48', '2024-05-22 06:24:48', '2024-05-22 06:24:48', NULL),
+(11, 3, 1, '2024-05-22 06:29:14', '2024-05-22 06:29:14', '2024-05-22 06:29:14', NULL),
+(12, 1, 1, '2024-05-22 06:32:39', '2024-05-22 06:32:39', '2024-05-22 06:32:39', NULL),
+(13, 3, 2, '2024-05-22 06:36:28', '2024-05-22 06:36:28', '2024-05-27 15:01:36', NULL),
+(14, 7, 1, '2024-05-22 06:38:25', '2024-05-22 06:38:25', '2024-05-25 17:13:59', '2024-05-25 17:13:59'),
+(15, 7, 1, '2024-05-27 16:25:28', '2024-05-27 16:25:28', '2024-05-27 16:25:28', NULL),
+(16, 6, 2, '2024-05-28 01:52:43', '2024-05-28 01:52:43', '2024-05-28 01:52:43', NULL),
+(17, 3, 2, '2024-05-30 08:28:17', '2024-05-30 08:28:17', '2024-06-03 14:21:42', NULL),
+(18, 1, 1, '2024-06-03 17:18:55', '2024-06-03 17:18:55', '2024-06-04 03:41:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -231,19 +269,25 @@ CREATE TABLE `types` (
   `name` varchar(100) NOT NULL,
   `description` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `types`
 --
 
-INSERT INTO `types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Inn', 'tipe yang oke banget', NULL, NULL),
-(2, 'Cottage', 'Tipe hotel yang cottage banget', NULL, NULL),
-(3, 'Resort', 'Tipe yang resort banget', NULL, NULL),
-(4, 'Elmi', 'Apa ya ini tipenya', '2024-05-09 18:45:15', '2024-05-09 18:45:15'),
-(5, 'Anjay', 'Tipe yang anjay banget', '2024-05-09 18:59:36', '2024-05-09 18:59:36');
+INSERT INTO `types` (`id`, `name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Inn', 'Nyaman wesss', NULL, '2024-05-28 05:10:44', NULL),
+(2, 'Cottage', 'Tipe hotel yang cottage bangets', NULL, '2024-05-28 04:01:06', NULL),
+(3, 'Resort', 'Tipe yang resort banget', NULL, NULL, NULL),
+(4, 'Elmi', 'Apa ya ini tipenya', '2024-05-09 18:45:15', '2024-05-09 18:45:15', NULL),
+(5, 'Anjays', 'Coba jam sekarang', '2024-05-09 18:59:36', '2024-06-04 05:04:09', '2024-06-04 05:04:09'),
+(6, 'Waduh', 'oker', '2024-05-20 20:32:50', '2024-05-28 03:08:56', '2024-05-28 03:08:56'),
+(7, 'coba', 'coba', '2024-05-28 03:21:26', '2024-05-28 04:04:09', '2024-05-28 04:04:09'),
+(8, 'Tipe', 'Baru', '2024-05-29 03:23:38', '2024-05-29 03:30:03', '2024-05-29 03:30:03'),
+(9, 'tipecobabaru', 'barusandicoba', '2024-05-29 03:29:54', '2024-05-29 03:29:58', '2024-05-29 03:29:58'),
+(10, 'Lah', 'Lah', '2024-06-04 05:05:56', '2024-06-04 05:06:30', '2024-06-04 05:06:30');
 
 -- --------------------------------------------------------
 
@@ -255,6 +299,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL DEFAULT 'guest',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -266,9 +311,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Deni', 'deni@gmail.com', NULL, '', NULL, NULL, NULL),
-(2, 'Ani', 'ani@gmail.com', NULL, '', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Deni', 'deni@gmail.com', 'guest', NULL, '', NULL, NULL, NULL),
+(2, 'Ani', 'ani@gmail.com', 'guest', NULL, '', NULL, NULL, NULL),
+(3, 'timi', 'timi@gmail.com', 'guest', NULL, '$2y$12$EVR/HEnVrKAX.a/S7iA9ouTHYJw2IwhBNpR7olvygKLj3o0OxJgFS', NULL, '2024-06-04 04:18:06', '2024-06-04 04:18:06'),
+(4, 'admin', 'admin@gmail.com', 'owner', NULL, '$2y$12$tX3FUZ2N43LYL.olDS1kau2Uf1JEyiB1OTRKQU7o2saY1Rr2PZi9.', NULL, '2024-06-04 04:47:52', '2024-06-04 04:47:52'),
+(5, 'adminaja', 'adminaja@gmail.com', 'guest', NULL, '$2y$12$O0yDQn19DY3nwRqEMeTOruyL/qadIg7xEZ9Izpna/op6JEGXzq3xi', NULL, '2024-06-04 04:49:20', '2024-06-04 04:49:20'),
+(6, 'adminasli', 'adminasli@gmail.com', 'owner', NULL, '$2y$12$7hNMSlkCsEPhhLc2H.Yxp.adD2PIuCkPNTkrt1cOwJBKQ4p4MzLSi', NULL, '2024-06-04 04:51:28', '2024-06-04 04:51:28');
 
 --
 -- Indexes for dumped tables
@@ -356,7 +405,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -368,7 +417,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `hotels`
 --
 ALTER TABLE `hotels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -386,25 +435,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

@@ -53,7 +53,8 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link active">Products</a>
+                            <a href="{{url('hotel')}}" class="nav-item nav-link">Hotel</a>
+                            <a href="{{url('laralux')}}" class="nav-item nav-link">Products</a>
                             <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
                             <a href="cart.html" class="nav-item nav-link">Cart</a>
                             <a href="checkout.html" class="nav-item nav-link">Checkout</a>
@@ -61,6 +62,8 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
+                                    <a href="{{url('customer')}}" class="dropdown-item">Customer</a>
+                                    <a href="{{url('transaction')}}" class="dropdown-item">Transaction</a>
                                     <a href="wishlist.html" class="dropdown-item">Wishlist</a>
                                     <a href="login.html" class="dropdown-item">Login & Register</a>
                                     <a href="contact.html" class="dropdown-item">Contact Us</a>
@@ -89,7 +92,7 @@
                     <div class="col-md-3">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="{{asset('img/logo.png')}}"alt="Logo">
+                                <img src="{{asset('assets/img/logo.png')}}"alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -116,13 +119,23 @@
         </div>
         <!-- Bottom Bar End -->  
         
+        @php
+        $pageName = 'Product';
+        if (Request::is('customer')) {
+            $pageName = 'Customer';
+        }
+        elseif (Request::is('hotel')) {
+            $pageName = 'Hotel';
+        }
+        @endphp
+
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active">Product List</li>
+                    <li class="breadcrumb-item active">{{$pageName}}</li>
                 </ul>
             </div>
         </div>
