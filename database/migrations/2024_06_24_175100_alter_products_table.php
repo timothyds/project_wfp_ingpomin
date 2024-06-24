@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products',function (Blueprint $table){
+        Schema::table('products', function (Blueprint $table) {
             $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->foreign('product_type_id')->references('id')->on('product_types');
-            $table->foreign('facility_id')->references('id')->on('facilities');
         });
     }
 
@@ -23,10 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table){
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['hotel_id']);
             $table->dropForeign(['product_type_id']);
-            $table->dropForeign(['facility_id']);
         });
     }
 };

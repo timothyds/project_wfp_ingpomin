@@ -14,8 +14,9 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         DB::table('products')->insert([
-            ['name'=>'Lestari','hotel_id'=>2],
-            
+            ['name' => 'Room Alpha', 'product_type_id' => 5, 'hotel_id' => 1, 'price' => 500000],
+            ['name' => 'Room Beta', 'product_type_id' => 6, 'hotel_id' => 2, 'price' => 1000000],
+            ['name' => 'Room Charlie', 'product_type_id' => 7, 'hotel_id' => 3, 'price' => 15000000],
         ]);
     }
 }

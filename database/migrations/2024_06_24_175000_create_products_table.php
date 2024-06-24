@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('hotel_id');
             $table->unsignedBigInteger('product_type_id');
             $table->double('price');
-            $table->unsignedBigInteger('facility_id');
             $table->timestamps();
             $table->softDeletes();
         });
