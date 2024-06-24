@@ -17,7 +17,7 @@ class HotelSeeder extends Seeder
                 'address' => '337 E Beach Blvd',
                 'phone' => '1 913 6516000',
                 'email' => 'info@yourdomain.com',
-                'rating' => ,
+                'rating' => '4',
                 'type_id' => '3',
             ],
         ]);
