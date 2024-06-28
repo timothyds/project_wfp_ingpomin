@@ -135,16 +135,31 @@
     <!-- Bottom Bar End -->
 
     @php
-        $pageName = 'Product';
-        if (Request::is('customer')) {
-            $pageName = 'Customer';
-        } elseif (Request::is('hotel')) {
-            $pageName = 'Hotel';
-        }
+        $pageNames = [
+        'customer' => 'Customer',
+        'produk' => 'Products',
+        'laralux/user/cart' => 'Cart',
+        'hotel' => 'Hotel',
+        'transaction' => 'Transaction',
+        'laralux' => '',
+        ];
+        
+        $currentUrl = request()->path();
+        $pageName = $pageNames[$currentUrl] ?? '';
     @endphp
 
     <!-- Breadcrumb Start -->
-    @yield('breadcrumb')
+    <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('laralux') }}">Home</a></li>
+                    @if ($pageName)
+                        <li class="breadcrumb-item active">{{ $pageName }}</li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+
     <!-- Breadcrumb End -->
 
     <!-- Product List Start -->

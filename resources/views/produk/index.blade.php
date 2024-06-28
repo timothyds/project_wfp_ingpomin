@@ -2,8 +2,10 @@
 @section('content')
 <div class="container-fluid">
     <div class='row'>
+    @if (Auth::user()->role == 'owner')
         <a class="btn btn-success" href="{{route('produk.create')}}">+ New Product</a>
         <a href="#modalCreateProd" data-toggle="modal" class="btn btn-info">+ New Product(with Modals)</a>
+    @endif
         @if (session('status'))
         <div class="alert alert-success">{{session("status")}}</div>
         @endif
@@ -35,13 +37,17 @@
                         <form style="display: inline" method="POST" action="{{url('produk/delPhoto')}}">
                             @csrf
                             <input type="hidden" value="{{'product/'.$r->id.'/'.$filename}}" name='filepath' />
+                            @can('delete-permission',Auth::user())
                             <input type="submit" value="delete" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ? ');">
+                            @endcan
                         </form>
                         <br>
                         @endforeach
                         @endif
                         <a href="{{ url('produk/uploadPhoto/'.$r->id) }}">
+                        @can('delete-permission',Auth::user())
                             <button class='btn btn-xs btn-default'>upload</button></a>
+                        @endcan
                     </td>
 
                     <td id="td_price_{{$r->id}}">Rp. {{number_format($r->price, 0, ',', ',')}}</td>

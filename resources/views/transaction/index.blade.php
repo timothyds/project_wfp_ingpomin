@@ -1,7 +1,10 @@
 @extends('layouts.frontend')
 @section('content')
+<div class="container-fluid">
+@if (Auth::user()->role == 'owner')
 <a class="btn btn-success" href="{{route('transaction.create')}}">+ New Transaction</a>
 <a href="#modalCreateCust" data-toggle="modal" class="btn btn-info">+ New Transaction(with Modals)</a>
+@endif
 @csrf
 @if (session('status'))
 <div class="alert alert-success">{{session("status")}}</div>
@@ -105,7 +108,7 @@
         </div>
     </div>
 </div>
-
+</div>
 @endsection
 @section('js')
 <script>
