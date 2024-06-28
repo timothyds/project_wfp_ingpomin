@@ -62,6 +62,10 @@ class HotelController extends Controller
     public function show(string $id)
     {
         //
+        $hotel = Hotel::find($id);
+        $nama = $hotel->name;
+        $data = $hotel->products;
+        return view('hotel.show', compact('nama', 'data'));
     }
 
     /**
