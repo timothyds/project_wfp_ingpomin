@@ -58,11 +58,11 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
                         <a href="{{ url('laralux') }}" class="nav-item nav-link active">Home</a>
-                        <a href="{{ url('laralux') }}" class="nav-item nav-link ">Products</a>
-                        <a href="{{ url('produk') }}" class="nav-item nav-link">Edit Products</a>
+                        {{-- <a href="{{ url('laralux') }}" class="nav-item nav-link ">Products</a> --}}
+                        <a href="{{ url('produk') }}" class="nav-item nav-link">Products</a>
                         <a href="{{ url('laralux/user/cart') }}" class="nav-item nav-link">Cart</a>
-                        <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                        <a href="my-account.html" class="nav-item nav-link">My Account</a>
+                        {{-- <a href="checkout.html" class="nav-item nav-link">Checkout</a> --}}
+                        {{-- <a href="my-account.html" class="nav-item nav-link">My Account</a> --}}
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                             <div class="dropdown-menu">
@@ -136,29 +136,29 @@
 
     @php
         $pageNames = [
-        'customer' => 'Customer',
-        'produk' => 'Products',
-        'laralux/user/cart' => 'Cart',
-        'hotel' => 'Hotel',
-        'transaction' => 'Transaction',
-        'laralux' => '',
+            'customer' => 'Customer',
+            'produk' => 'Products',
+            'laralux/user/cart' => 'Cart',
+            'hotel' => 'Hotel',
+            'transaction' => 'Transaction',
+            'laralux' => '',
         ];
-        
+
         $currentUrl = request()->path();
         $pageName = $pageNames[$currentUrl] ?? '';
     @endphp
 
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-wrap">
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('laralux') }}">Home</a></li>
-                    @if ($pageName)
-                        <li class="breadcrumb-item active">{{ $pageName }}</li>
-                    @endif
-                </ul>
-            </div>
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('laralux') }}">Home</a></li>
+                @if ($pageName)
+                    <li class="breadcrumb-item active">{{ $pageName }}</li>
+                @endif
+            </ul>
         </div>
+    </div>
 
     <!-- Breadcrumb End -->
 

@@ -89,7 +89,7 @@
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-title">
-                            <a href="{{ route('laralux.show', $p->id) }}">{{ $p->name }}</a>
+                            <a href="{{ route('produk.show', $p->id) }}">{{ $p->name }}</a>
                             <div class="ratting">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -114,7 +114,10 @@
                             </div>
                         </div>
                         <div class="product-price">
-                            <h3>{{ $p->product_type->name }}</h3>
+                            <h3><span>{{ $p->product_type->name }}</span></h3>
+                            <br>
+                            <h3><span>IDR</span>{{ $p->price }}</h3>
+
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                         </div>
                     </div>
