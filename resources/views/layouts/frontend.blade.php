@@ -53,15 +53,17 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="{{url('laralux')}}" class="nav-item nav-link">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link active">Products</a>
+                            <a href="{{url('laralux')}}" class="nav-item nav-link active">Products</a>
                             <a href="{{ url('produk') }}" class="nav-item nav-link">Edit Products</a>
-                            <a href="cart.html" class="nav-item nav-link">Cart</a>
+                            <a href="{{ url('laralux/user/cart') }}" class="nav-item nav-link">Cart</a>
                             <a href="checkout.html" class="nav-item nav-link">Checkout</a>
                             <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
+                                @can('delete-permission',Auth::user())
                                     <a href="{{url('customer')}}" class="dropdown-item">Customer</a>
+                                @endcan
                                     <a href="{{url('transaction')}}" class="dropdown-item">Transaction</a>
                                     <a href="wishlist.html" class="dropdown-item">Wishlist</a>
                                     <a href="{{url('hotel')}}" class="dropdown-item">List Hotel</a>
@@ -72,10 +74,16 @@
                         </div>
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                            <span class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</span>
                                 <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Login</a>
-                                    <a href="#" class="dropdown-item">Register</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i>{{ __('Logout') }}</i>
+                                    </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                                </form>
                                 </div>
                             </div>
                         </div>
