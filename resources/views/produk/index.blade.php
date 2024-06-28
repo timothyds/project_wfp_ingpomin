@@ -103,6 +103,21 @@
                                     @endforeach
                                 </select>
                                 <small id="produkHelp" class="form-text text-muted">Please determine your product Hotel.</small>
+                                <select class="form-control" name="type">
+                                    @foreach ($type as $t)
+                                    <option value="{{$t->id}}">{{$t->name}}</option>
+                                    @endforeach
+                                </select>
+                                <small id="produkHelp" class="form-text text-muted">Please determine your product type.</small>
+                                <label for="facilities">Facilities:</label>
+                                @foreach ($facility as $f)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilities[]" value="{{ $f->id }}" id="facility{{ $f->id }}">
+                                    <label class="form-check-label" for="facility{{ $f->id }}">
+                                        {{ $f->name }}
+                                    </label>
+                                </div>
+                                @endforeach
                             </div>
                     </div>
                     <div class="modal-footer">

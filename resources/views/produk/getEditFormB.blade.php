@@ -11,6 +11,7 @@
         <small id="produkHelp" class="form-text text-muted">Please determine your product image.</small>
         <input type="text" name="available_room" class="form-control" id="eAvail" aria-describedby="tipeHelp" placeholder="Enter Product Available Room" value="{{$data->available_room}}">
         <small id="produkHelp" class="form-text text-muted">Please determine your product available room.</small>
+        <small id="produkHelp" class="form-text text-muted">Please determine your product available room.</small>
     </div>
     <a class="btn btn-primary" href="{{url()->previous()}}">Cancel</a>
 

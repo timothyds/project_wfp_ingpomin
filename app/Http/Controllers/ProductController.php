@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facility;
 use App\Models\Hotel;
 use App\Models\Product;
+use App\Models\Product_Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -16,6 +19,8 @@ class ProductController extends Controller
     {
         //$product = Product::all();
         $hotel = Hotel::all();
+        $type = Product_Type::all();
+        $facility = Facility::all();
         $rs = Product::all();
         foreach ($rs as $r) {
             $directory = public_path('product/' . $r->id);
@@ -28,7 +33,7 @@ class ProductController extends Controller
                 $r['filenames'] = $filenames;
             }
         }
-        return view('produk.index', compact('rs', 'hotel'));
+        return view('produk.index', compact('rs', 'hotel', 'type', 'facility'));
         // return view('produk.index', compact('rs', 'hotel'));
         //dd($product); -> Untuk Debugging
         //return view('produk.index', ['datas' => $product, 'hotel' => $hotel]);
@@ -54,7 +59,9 @@ class ProductController extends Controller
             'price' => 'required',
             'image' => 'required',
             'available_room' => 'required',
-            'hotel' => 'required'
+            'type' => 'required',
+            'hotel' => 'required',
+            'facilities' => 'required|array',
 
         ]);
         // Type::create($request->all());
@@ -64,9 +71,15 @@ class ProductController extends Controller
         $data->price = $request->get('price');
         $data->image = $request->get('image');
         $data->available_room = $request->get('available_room');
+        $data->product_type_id = $request->get('type');
         $data->hotel_id = $request->get('hotel');
         $data->save();
 
+        $product_id = $data->id;
+        $facility_ids = $request->get('facilities');
+        foreach ($facility_ids as $facility_id) {
+            DB::insert('INSERT INTO facility_product (product_id, facility_id) values (?, ?)', [$product_id, $facility_id]);
+        }
         return redirect('produk')->with('status', 'Berhasil Ditambah!');
     }
 
@@ -89,7 +102,8 @@ class ProductController extends Controller
     {
         $data = Product::find($id);
         $hotel = Hotel::all();
-        return view('produk.edit', compact('data', 'hotel'));
+        $tipe = Product_Type::all();
+        return view('produk.edit', compact('data', 'hotel', 'tipe'));
     }
 
     /**
@@ -102,7 +116,16 @@ class ProductController extends Controller
         $updatedData->price = $request->get('price');
         $updatedData->image = $request->get('image');
         $updatedData->available_room = $request->get('available_room');
+        $updatedData->product_type_id = $request->get('type');
         $updatedData->save();
+
+        $facility_ids = $request->get('facilities');
+
+        DB::table('facility_product')->where('product_id', $id)->delete();
+
+        foreach ($facility_ids as $facility_id) {
+            DB::insert('INSERT INTO facility_product (product_id, facility_id) values (?, ?)', [$id, $facility_id]);
+        }
         return redirect()->route('produk.index')->with('status', 'Horray ! Your data is successfully updated !');
     }
 
