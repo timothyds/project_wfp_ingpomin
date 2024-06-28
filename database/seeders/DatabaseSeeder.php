@@ -22,9 +22,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // UserSeeder::class,
-            // HotelSeeder::class,
-            // TypeSeeder::class,
-            // ProductSeeder::class,
+            HotelTypeSeeder::class,
+            ProductTypeSeeder::class,
+            FacilitySeeder::class,
+            HotelSeeder::class,
+            ProductSeeder::class,
+            FacilityProductSeeder::class,
         ]);
     }
 }
