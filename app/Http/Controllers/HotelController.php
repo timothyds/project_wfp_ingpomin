@@ -39,7 +39,9 @@ class HotelController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'city' => 'required',
+            'phone'=>'required',
+            'email' => 'required',
+            'rating'=>'required',
             'image' => 'required',
             'tipe' => 'required'
         ]);
@@ -48,9 +50,11 @@ class HotelController extends Controller
         $data = new Hotel();
         $data->name = $request->get('name');
         $data->address = $request->get('address');
-        $data->city = $request->get('city');
+        $data->phone = $request->get('phone');
+        $data->email = $request->get('email');
+        $data->rating = $request->get('rating');
         $data->image = $request->get('image');
-        $data->hotel_type = $request->get('tipe');
+        $data->hotel_type_id = $request->get('tipe');
 
         $data->save();
 
@@ -83,9 +87,11 @@ class HotelController extends Controller
         $updatedData = Hotel::find($id);
         $updatedData->name = $request->name;
         $updatedData->address = $request->get('address');
-        $updatedData->city = $request->get('city');
+        $updatedData->phone = $request->get('phone');
+        $updatedData->email = $request->get('email');
+        $updatedData->rating = $request->get('rating');
         $updatedData->image = $request->get('image');
-        $updatedData->hotel_type = $request->get('tipe');
+        $updatedData->hotel_type_id = $request->get('tipe');
         $updatedData->save();
         return redirect()->route('hotel.index')->with('status', 'Horray ! Your data is successfully updated !');
     }
