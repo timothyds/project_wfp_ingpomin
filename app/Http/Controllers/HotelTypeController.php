@@ -7,7 +7,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TypeController extends Controller
+class HotelTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
