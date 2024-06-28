@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use App\Models\Hotel;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,8 +14,13 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return view('frontend.index', compact('products'));
+        // $products = Product::all();
+        // return view('frontend.index', compact('products'));
+
+        $hotels = DB::table('hotels')->get();
+        $caralain = Hotel::all();
+        // dd($caralain);
+        return view('hotel.index', ['datas' => $caralain]); //menuju ke view hotel/index.blade.php
     }
     public function show($id)
     {
