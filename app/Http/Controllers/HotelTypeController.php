@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel_Type;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $data = Type::all();
+        $data = Hotel_Type::all();
         return view('tipe.index', compact('data'));
     }
 
@@ -33,11 +34,9 @@ class TypeController extends Controller
         //dd($request);
         $request->validate([
             'name' => 'required',
-            'desc' => 'required',
         ]);
-        $data = new Type();
+        $data = new Hotel_Type();
         $data->name = $request->get('name');
-        $data->description = $request->get('desc');
         $data->save();
 
         return redirect('tipe')->with('status', 'Berhasil Ditambah!');
@@ -46,7 +45,7 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Type $type)
+    public function show(Hotel_Type $type)
     {
         //
     }
@@ -56,7 +55,7 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        $data = Type::find($id);
+        $data = Hotel_Type::find($id);
         //dd($data);
         return view('tipe.edit', compact('data'));
     }
@@ -66,11 +65,11 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updatedData = Type::find($id);
+        $updatedData = Hotel_Type::find($id);
         $updatedData->name = $request->name;
         $updatedData->description = $request->desc;
         $updatedData->save();
-        return redirect()->route('tipe.index')->with('status', 'Horray ! Your data is successfully updated !');
+        return redirect()->route('tipe.index')->with('status', 'Horray! Your data is successfully updated!');
     }
 
     /**
@@ -83,7 +82,7 @@ class TypeController extends Controller
 
         try {
             //if no contraint error, then delete data. Redirect to index after it.
-            $data = Type::find($id);
+            $data = Hotel_Type::find($id);
             $data->delete();
             return redirect()->route('tipe.index')->with('status', 'Horray ! Your data is successfully deleted !');
         } catch (\Throwable $th) {
@@ -92,28 +91,31 @@ class TypeController extends Controller
             return redirect()->route('tipe.index')->with('status', $msg);
         }
     }
+
     public function getEditForm(Request $request)
     {
         $id = $request->id;
-        $data = Type::find($id);
+        $data = Hotel_Type::find($id);
         return response()->json(array(
             'status' => 'oke',
             'msg' => view('tipe.getEditForm', compact('data'))->render()
         ), 200);
     }
+
     public function getEditFormB(Request $request)
     {
         $id = $request->id;
-        $data = Type::find($id);
+        $data = Hotel_Type::find($id);
         return response()->json(array(
             'status' => 'oke',
             'msg' => view('tipe.getEditFormB', compact('data'))->render()
         ), 200);
     }
+
     public function saveDataTD(Request $request)
     {
         $id = $request->id;
-        $data = Type::find($id);
+        $data = Hotel_Type::find($id);
         $data->name = $request->name;
         $data->description = $request->desc;
         $data->save();
@@ -122,10 +124,11 @@ class TypeController extends Controller
             'msg' => 'type data is up-to-date !'
         ), 200);
     }
+
     public function deleteData(Request $request)
     {
         $id = $request->id;
-        $data = Type::find($id);
+        $data = Hotel_Type::find($id);
         $data->delete();
         return response()->json(array(
             'status' => 'oke',
