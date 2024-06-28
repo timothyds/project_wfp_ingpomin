@@ -12,22 +12,27 @@ class Transaction extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    public function user(): BelongsTo
+
+    public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
-    public function customer(): BelongsTo
+
+    public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class);
     }
-    public function products(): BelongsToMany
+
+    public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_transaction', 'transaction_id', 'product_id')->withPivot('quantity', 'subtotal');
+        return $this->belongsToMany(Product::class)->withPivot('quantity', 'subtotal');
     }
-    public function customerWithTrashed(): BelongsTo
+
+    public function customerWithTrashed()
     {
         return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();
     }
+
     public function insertProducts($cart, $user)
     {
         $total = 0;

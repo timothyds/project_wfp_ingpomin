@@ -13,17 +13,18 @@ class Hotel extends Model
     use HasFactory;
     use SoftDeletes;
 
-    //protected $table = 'namatable'; -> Untuk mengatur nama tabel di database
-    public function products() : HasMany
+    public function products()
     {
-        return $this->hasMany(Product::class,'hotel_id','id');//hotel_id merupakan foreign key di product, sedangkan id merupakan pk dari hotel
+        return $this->hasMany(Product::class);
     }
-    public function type(): BelongsTo
+
+    public function hotel_type()
     {
-        return $this->belongsTo(Type::class,'hotel_type');
+        return $this->belongsTo(Hotel_Type::class);
     }
-    public function typeWithTrashed(): BelongsTo
+
+    public function hotel_typeWithTrashed()
     {
-        return $this->belongsTo(Type::class,'hotel_type')->withTrashed();
+        return $this->belongsTo(Hotel_Type::class, 'hotel_type_id')->withTrashed();
     }
 }
