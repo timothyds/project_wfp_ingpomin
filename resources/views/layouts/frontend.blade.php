@@ -63,19 +63,22 @@
                         <a href="{{ url('laralux/user/cart') }}" class="nav-item nav-link">Cart</a>
                         {{-- <a href="checkout.html" class="nav-item nav-link">Checkout</a> --}}
                         {{-- <a href="my-account.html" class="nav-item nav-link">My Account</a> --}}
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                            <div class="dropdown-menu">
-                                @can('delete-permission', Auth::user())
-                                    <a href="{{ url('customer') }}" class="dropdown-item">Customer</a>
-                                @endcan
-                                <a href="{{ url('transaction') }}" class="dropdown-item">Transaction</a>
-                                <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                                <a href="{{ url('hotel') }}" class="dropdown-item">List Hotel</a>
-                                <a href="login.html" class="dropdown-item">Login & Register</a>
-                                <a href="contact.html" class="dropdown-item">Contact Us</a>
+                        @if (Auth::user()->role == 'staff' || Auth::user()->role == 'owner')
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                                <div class="dropdown-menu">
+                                    @can('delete-permission', Auth::user())
+                                        <a href="{{ url('customer') }}" class="dropdown-item">Customer</a>
+                                    @endcan
+                                    <a href="{{ url('transaction') }}" class="dropdown-item">Transaction</a>
+                                    <a href="{{ url('tipe') }}" class="dropdown-item">Hotel Type</a>
+                                    <a href="{{ url('hotel') }}" class="dropdown-item">List Hotel</a>
+                                    <a href="{{ url('produkType') }}" class="dropdown-item">Produk Type</a>
+                                    <a href="login.html" class="dropdown-item">Login & Register</a>
+                                    <a href="contact.html" class="dropdown-item">Contact Us</a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">

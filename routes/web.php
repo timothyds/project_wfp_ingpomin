@@ -3,10 +3,14 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\HotelTypeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TypeController;
+use App\Models\Hotel_Type;
 use App\Models\Transaction;
+use Database\Seeders\ProductTypeSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,10 +45,11 @@ Route::post("/hotel/showInfo", [HotelController::class, 'showInfo'])->name("hote
 Route::post('transaction/showDataAjax/', [TransactionController::class, 'showAjax'])->name('transaction.showAjax');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('tipe', TypeController::class);
+    Route::resource('tipe', HotelTypeController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('transaction', TransactionController::class);
     Route::resource('produk', ProductController::class);
+    Route::resource('produkType', ProductTypeController::class);
     Route::resource('hotel', HotelController::class);
     Route::get('laralux/user/cart', function () {
         return view('frontend.cart');
