@@ -52,10 +52,10 @@
                         @if($r->hotelWithTrashed){{$r->hotelWithTrashed->name}}
                         @endif
                     </td>
+                    <td><a class="btn btn-warning" href="{{ route('produk.edit', $r->id)}}">Edit</a></td>
                     <td>
-                        @can('delete-permission',Auth::user())
                         <a href="#modalEditB" class="btn btn-info" data-toggle="modal" onclick="getEditFormB({{$r->id}})">Edit Type B</a>
-                        <a class="btn btn-warning" href="{{ route('produk.edit', $r->id)}}">Edit</a>
+                        @can('delete-permission',Auth::user())
                         <a href="#" value="DeleteNoReload" class="btn btn-danger" onclick="if(confirm('Are you sure to delete {{$r->id}} - {{$r->name}} ? ')) deleteDataRemoveTR({{$r->id}})">Delete without Reload</a>
                         <form method="POST" action="{{route('produk.destroy',$r->id)}}">
                             @csrf
@@ -82,7 +82,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">Add New Product</h4>
+                        <h4 class="modal-title">Add New Customer</h4>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="{{route('produk.store')}}">

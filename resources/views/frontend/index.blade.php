@@ -1,4 +1,4 @@
-@extends('layouts.conquer2')
+@extends('layouts.frontend')
 
 @section('content')
 <div class="container-fluid">
