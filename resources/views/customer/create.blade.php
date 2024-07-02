@@ -1,6 +1,7 @@
-@extends('layouts.conquer2')
+@extends('layouts.frontend')
 
 @section('content')
+<div class="container-fluid">
     <form method="POST" action="{{ route('customer.store') }}">
         @csrf
         <div class="form-group">
@@ -16,4 +17,5 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelTypeController;
@@ -51,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('produk', ProductController::class);
     Route::resource('produkType', ProductTypeController::class);
     Route::resource('hotel', HotelController::class);
+    Route::resource('facility', FacilityController::class);
     Route::get('laralux/user/cart', function () {
         return view('frontend.cart');
     })->name('cart');
@@ -78,6 +80,9 @@ Route::post('customproduk/deleteData', [ProductController::class, 'deleteData'])
 Route::post('customtrans/getEditFormB', [TransactionController::class, 'getEditFormB'])->name('transaction.getEditFormB');
 Route::post('customtrans/saveDataTD', [TransactionController::class, 'saveDataTD'])->name('transaction.saveDataTD');
 Route::post('customtrans/deleteData', [TransactionController::class, 'deleteData'])->name('transaction.deleteData');
+Route::post('customfacility/getEditFormB', [FacilityController::class, 'getEditFormB'])->name('facility.getEditFormB');
+Route::post('customfacility/saveDataTD', [FacilityController::class, 'saveDataTD'])->name('facility.saveDataTD');
+Route::post('customfacility/deleteData', [FacilityController::class, 'deleteData'])->name('facility.deleteData');
 
 Route::get('hotel/uploadLogo/{hotel_id}', [HotelController::class, 'uploadLogo']);
 Route::post('produk/delPhoto', [ProductController::class, 'delPhoto']);
