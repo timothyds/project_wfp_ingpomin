@@ -116,8 +116,7 @@
                         <div class="product-price">
                             <h3><span>{{ $p->product_type->name }}</span></h3>
                             <br>
-                            <h3><span>IDR</span>{{ $p->price }}</h3>
-
+                            <h3><span>IDR</span>{{number_format( $p->price,0,',',',') }}</h3>
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                         </div>
                     </div>

@@ -67,10 +67,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::post('customtype/getEditForm', [TypeController::class, 'getEditForm'])->name('tipe.getEditForm');
-Route::post('customtype/getEditFormB', [TypeController::class, 'getEditFormB'])->name('tipe.getEditFormB');
-Route::post('customtype/saveDataTD', [TypeController::class, 'saveDataTD'])->name('tipe.saveDataTD');
-Route::post('customtype/deleteData', [TypeController::class, 'deleteData'])->name('tipe.deleteData');
+Route::post('customtype/getEditForm', [HotelTypeController::class, 'getEditForm'])->name('tipe.getEditForm');
+Route::post('customtype/getEditFormB', [HotelTypeController::class, 'getEditFormB'])->name('tipe.getEditFormB');
+Route::post('customtype/saveDataTD', [HotelTypeController::class, 'saveDataTD'])->name('tipe.saveDataTD');
+Route::post('customtype/deleteData', [HotelTypeController::class, 'deleteData'])->name('tipe.deleteData');
 Route::post('customcustomer/getEditFormB', [CustomerController::class, 'getEditFormB'])->name('customer.getEditFormB');
 Route::post('customcustomer/saveDataTD', [CustomerController::class, 'saveDataTD'])->name('customer.saveDataTD');
 Route::post('customcustomer/deleteData', [CustomerController::class, 'deleteData'])->name('customer.deleteData');
@@ -89,6 +89,9 @@ Route::post('produk/delPhoto', [ProductController::class, 'delPhoto']);
 Route::get('produk/uploadPhoto/{product_id}', [ProductController::class, 'uploadPhoto']);
 Route::post('produk/simpanPhoto', [ProductController::class, 'simpanPhoto']);
 Route::post('hotel/simpanPhoto', [HotelController::class, 'simpanPhoto']);
+
+Route::get('transactions/list', [TransactionController::class, 'showTransactions'])->name('showTransactionList');
+Route::get('transactions/listcust', [TransactionController::class, 'showTransactionsCustomer'])->name('showTransactionListCust');
 
 
 

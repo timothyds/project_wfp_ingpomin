@@ -2,9 +2,9 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
 @endif
 <div class="product-detail">
     <div class="container-fluid">
@@ -36,8 +36,12 @@
                                     <i class="fa fa-star"></i>
                                 </div>
                                 <div class="price">
+                                    <h4>Available Room:</h4>
+                                    <p>{{ $product->available_room }}</p>
+                                </div>
+                                <div class="price">
                                     <h4>Price:</h4>
-                                    <p>{{ 'IDR'.$product->price }}</p>
+                                    <p>{{'IDR '.number_format($product->price,0,',',',') }}</p>
                                 </div>
                                 <div class="action">
                                     <a class="btn" href="{{route('addCart',$product->id)}}"><i class="fa fa-shopping-cart"></i>Add to Cart</a>

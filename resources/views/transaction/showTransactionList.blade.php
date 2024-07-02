@@ -8,6 +8,8 @@
             <thead>
                 <tr>
                     <th>Transaction ID</th>
+                    <th>User ID</th>
+                    <th>Transaction Date</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Subtotal</th>
@@ -17,9 +19,11 @@
                 @foreach($transactionDetails as $detail)
                 <tr>
                     <td>{{ $detail['transaction_id'] }}</td>
+                    <td>{{ $detail['user_id'] }}</td>
+                    <td>{{ $detail['transaction_date'] }}</td>
                     <td>{{ $detail['product_name'] }}</td>
                     <td>{{ $detail['quantity'] }}</td>
-                    <td>{{ $detail['subtotal'] }}</td>
+                    <td>Rp. {{number_format($detail['subtotal'], 0, ',', ',')}}</td>
                 </tr>
                 @endforeach
             </tbody>

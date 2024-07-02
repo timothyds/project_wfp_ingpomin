@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
@@ -205,5 +206,55 @@ class TransactionController extends Controller
             'status' => 'oke',
             'msg' => 'Transaction data is removed !'
         ), 200);
+    }
+    public function showTransactions()
+    {
+        $transactions = Transaction::with(['products' => function ($query) {
+            $query->select('products.id', 'products.name');
+        }])->get();
+
+        // Inisialisasi array untuk menyimpan data
+        $transactionDetails = [];
+
+        // Loop melalui setiap transaksi
+        foreach ($transactions as $transaction) {
+            foreach ($transaction->products as $product) {
+                $transactionDetails[] = [
+                    'transaction_id' => $transaction->id,
+                    'user_id' => $transaction->user_id, 
+                    'transaction_date' => $transaction->transaction_date,
+                    'product_name' => $product->name,
+                    'quantity' => $product->pivot->quantity,
+                    'subtotal' => $product->pivot->subtotal
+                ];
+            }
+        }
+
+        return view('transaction.showTransactionList', compact('transactionDetails'));
+    }
+    public function showTransactionsCustomer()
+    {
+        $userId = Auth::id();
+        $transactions = Transaction::with(['products' => function ($query) {
+            $query->select('products.id', 'products.name');
+        }]) ->where('user_id', $userId)->get();
+        // Inisialisasi array untuk menyimpan data
+        $transactionDetails = [];
+
+        // Loop melalui setiap transaksi
+        foreach ($transactions as $transaction) {
+            foreach ($transaction->products as $product) {
+                $transactionDetails[] = [
+                    'transaction_id' => $transaction->id,
+                    'user_id' => $transaction->user_id, 
+                    'transaction_date' => $transaction->transaction_date,
+                    'product_name' => $product->name,
+                    'quantity' => $product->pivot->quantity,
+                    'subtotal' => $product->pivot->subtotal
+                ];
+            }
+        }
+
+        return view('transaction.showTransPerCust', compact('transactionDetails'));
     }
 }

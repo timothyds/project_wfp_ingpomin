@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
+<div class="container-fluid">
     <a class="btn btn-success" href="{{ route('produkType.create') }}">+ New Product Type</a>
     <a href="#modalCreate" data-toggle="modal" class="btn btn-info">+ New Product Type(with Modals)</a>
     @csrf
@@ -94,13 +95,14 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('js')
     <script>
         function getEditForm(type_id) {
             $.ajax({
                 type: 'POST',
-                url: '{{ route('tipe.getEditForm') }}',
+                url: '{{ route("tipe.getEditForm") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': type_id
@@ -114,7 +116,7 @@
         function getEditFormB(type_id) {
             $.ajax({
                 type: 'POST',
-                url: '{{ route('tipe.getEditFormB') }}',
+                url: '{{ route("tipe.getEditFormB") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': type_id
@@ -132,7 +134,7 @@
             console.log(eDesc);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('tipe.saveDataTD') }}',
+                url: '{{ route("tipe.saveDataTD") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': type_id,
@@ -152,7 +154,7 @@
         function deleteDataRemoveTR(type_id) {
             $.ajax({
                 type: 'POST',
-                url: '{{ route('tipe.deleteData') }}',
+                url: '{{ route("tipe.deleteData") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': type_id

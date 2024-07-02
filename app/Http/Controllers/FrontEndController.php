@@ -29,20 +29,20 @@ class FrontEndController extends Controller
         $product = Product::find($id);
         if ($product) {
             $directory = public_path('product/' . $product->id);
-    
+
             if (File::exists($directory)) {
                 $files = File::files($directory);
                 $filenames = [];
-    
+
                 foreach ($files as $file) {
                     $filenames[] = $file->getFilename();
                 }
-    
+
                 $product->filenames = $filenames;
             } else {
                 $product->filenames = [];
             }
-    
+
             return view('frontend.product-detail', compact('product'));
         } else {
             return redirect()->back()->with('error', 'Product not found');
@@ -51,18 +51,36 @@ class FrontEndController extends Controller
     public function addToCart($id)
     {
         $product = Product::find($id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
         $cart = session()->get('cart');
+
+        // Fetch the filenames of the product
+        $directory = public_path('product/' . $product->id);
+        $filenames = [];
+        if (File::exists($directory)) {
+            $files = File::files($directory);
+            foreach ($files as $file) {
+                $filenames[] = $file->getFilename();
+            }
+        }
+
         if (!isset($cart[$id])) {
             $cart[$id] = [
                 'id' => $id,
                 'name' => $product->name,
+                'type' => $product->product_type->name,
                 'quantity' => 1,
                 'price' => $product->price,
                 'photo' => $product->image,
+                'filenames' => $filenames // Store filenames in cart
             ];
         } else {
             $cart[$id]['quantity']++;
         }
+
         session()->put('cart', $cart);
         return redirect()->back()->with("status", "Produk Telah ditambahkan ke Cart");
     }
@@ -115,7 +133,6 @@ class FrontEndController extends Controller
         $user = Auth::user();
         $t = new Transaction();
         $t->user_id = $user->id;
-        $t->customer_id = 1;
         $t->transaction_date = Carbon::now()->toDateTimeString();
         $t->save();
         //insert into junction table product_transaction using eloquent

@@ -13,6 +13,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Product</th>
+                                <th>Type</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
@@ -25,17 +26,20 @@
                             <tr>
                                 <td>
                                     <div class="img">
-                                        @if ($item['photo'] == NULL)
-                                        <a href="#"><img src="{{asset('images/blank.jpg') }}" alt="Image"></a>
-                                        @elseif(!empty($item->filenames))
-                                        @foreach ($item->filenames as $filename)
-                                        <img height='250px' src="{{ asset('product/' . $item->id . '/' . $filename) }}" />
-                                        @endforeach
+                                        @if (!empty($item['filenames']))
+                                        <div class="product-images">
+                                            @foreach ($item['filenames'] as $filename)
+                                            <img src="{{ asset('product/' . $item['id'] . '/' . $filename) }}" alt="{{ $item['name'] }}" style="width: 100px; height: auto;">
+                                            @endforeach
+                                        </div>
+                                        @else
+                                        <p>No images available</p>
                                         @endif
                                         <p>{{$item['name']}}</p>
                                     </div>
                                 </td>
-                                <td>{{'IDR '.$item['price']}}</td>
+                                <td>{{$item['type']}}</td>
+                                <td>{{'IDR '.number_format($item['price'],0,',',',')}}</td>
                                 <td>
                                     <div class="qty">
                                         <button onclick="redQty({{$item['id']}})" class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -43,7 +47,7 @@
                                         <button onclick="addQty({{$item['id']}})" class="btn-plus"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </td>
-                                <td>{{ 'IDR '.$item['quantity']* $item['price'] }}</td>
+                                <td>{{'IDR '.number_format( $item['quantity']* $item['price'],0,',',',') }}</td>
                                 <td><a class="btn btn-danger" href="{{route('delFromCart',$item['id'])}}"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             @php
@@ -75,7 +79,7 @@
                         <div class="cart-summary">
                             <div class="cart-content">
                                 <h1>Cart Summary</h1>
-                                <h2>Grand Total<span>{{'IDR '.$total}}</span></h2>
+                                <h2>Grand Total<span> IDR {{number_format($total,0,',',',')}}</span></h2>
                             </div>
                             <div class="cart-btn">
                                 <a class="btn btn-xs" href="{{ route('laralux.index') }}">Continue Shopping</a>
