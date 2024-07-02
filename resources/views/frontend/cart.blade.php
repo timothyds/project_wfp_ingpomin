@@ -78,8 +78,12 @@
                                 <h2>Grand Total<span>{{'IDR '.$total}}</span></h2>
                             </div>
                             <div class="cart-btn">
-                                <a class="btn btn-xs" href="{{route('laralux.index')}}">Continue Shopping</button>
-                                    <a class="btn btn-xs" href="{{ route('checkout')}}">Checkout</a>
+                                <a class="btn btn-xs" href="{{ route('laralux.index') }}">Continue Shopping</a>
+
+                                <form action="{{ route('checkout') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-xs">Checkout</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -93,6 +97,26 @@
 @endsection
 @section('js')
 <script>
+    function checkout() {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("checkout") }}',
+            data: {
+                '_token': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    window.location.href = '{{ route("laralux.index") }}';
+                } else {
+                    alert('Checkout failed');
+                }
+            },
+            error: function(xhr) {
+                alert('An error occurred');
+            }
+        });
+    }
+
     function redQty(id) {
         $.ajax({
             type: 'POST',

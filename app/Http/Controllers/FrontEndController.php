@@ -21,7 +21,7 @@ class FrontEndController extends Controller
         $hotels = DB::table('hotels')->get();
         $caralain = Hotel::all();
         // dd($caralain);
-        return view('hotel.index', ['datas' => $caralain]); //menuju ke view hotel/index.blade.php
+        return view('hotel.index0', ['datas' => $caralain]); //menuju ke view hotel/index.blade.php
     }
     public function show($id)
     {
@@ -115,7 +115,7 @@ class FrontEndController extends Controller
         $user = Auth::user();
         $t = new Transaction();
         $t->user_id = $user->id;
-        $t->customer_id = 1; //need to fix later
+        $t->customer_id = 1;
         $t->transaction_date = Carbon::now()->toDateTimeString();
         $t->save();
         //insert into junction table product_transaction using eloquent

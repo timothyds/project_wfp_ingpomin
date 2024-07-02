@@ -13,6 +13,10 @@
             <small id="tipeHelp" class="form-text text-muted">Please determine the hotel address.</small>
             <input type="text" name="phone" class="form-control" id="phonetxt" value="{{$datas->phone}}">
             <small id="tipeHelp" class="form-text text-muted">Please determine the hotel phone number.</small>
+            <input type="text" name="email" class="form-control" id="emailtxt" value="{{$datas->email}}">
+            <small id="tipeHelp" class="form-text text-muted">Please determine the hotel email.</small>
+            <input type="text" name="rating" class="form-control" id="ratingtxt" value="{{$datas->rating}}">
+            <small id="tipeHelp" class="form-text text-muted">Please determine the hotel rating.</small>
             <select class="form-control" name="tipe">
                 @foreach ($tipes as $t)
                 <option value="{{ $t->id }}" @selected($datas->tipe == $t->id)>{{ $t->name }}</option>
