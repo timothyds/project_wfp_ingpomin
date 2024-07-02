@@ -52,7 +52,7 @@
                         <div class="col-md-4">
                             <div class="product-item">
                                 <div class="product-title">
-                                    <a href="{{ route('laralux.show', $p->id) }}">{{ $p->name }}</a>
+                                    <a href="{{ route('produk.show', $p->id) }}">{{ $p->name }}</a>
                                     <div class="ratting">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

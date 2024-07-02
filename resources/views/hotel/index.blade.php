@@ -103,7 +103,7 @@
                                 @if ($p->image == null)
                                     <img src="{{ asset('images/blank.jpg') }}">
                                 @else
-                                    <img src="{{ asset('images/' . $p->image) }}" alt="Product Image">
+                                    <img height='150px' src="{{ asset('images/' . $p->image) }}" alt="Product Image">
                                 @endif
 
                             </a>

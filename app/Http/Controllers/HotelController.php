@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\Hotel_Type;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class HotelController extends Controller
 {
@@ -69,7 +71,18 @@ class HotelController extends Controller
         $hotel = Hotel::find($id);
         $nama = $hotel->name;
         $data = $hotel->products;
-        return view('hotel.show', compact('nama', 'data'));
+        foreach ($data as $p) {
+            $directory = public_path('product/' . $p->id);
+            if (File::exists($directory)) {
+                $files = File::files($directory);
+                $filenames = [];
+                foreach ($files as $file) {
+                    $filenames[] = $file->getFilename();
+                }
+                $p['filenames'] = $filenames;
+            }
+        }
+        return view('hotel.show', compact('nama', 'data',));
     }
 
     /**

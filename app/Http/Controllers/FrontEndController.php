@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class FrontEndController extends Controller
 {
@@ -26,7 +27,26 @@ class FrontEndController extends Controller
     {
         //
         $product = Product::find($id);
-        return view('frontend.product-detail', compact('product'));
+        if ($product) {
+            $directory = public_path('product/' . $product->id);
+    
+            if (File::exists($directory)) {
+                $files = File::files($directory);
+                $filenames = [];
+    
+                foreach ($files as $file) {
+                    $filenames[] = $file->getFilename();
+                }
+    
+                $product->filenames = $filenames;
+            } else {
+                $product->filenames = [];
+            }
+    
+            return view('frontend.product-detail', compact('product'));
+        } else {
+            return redirect()->back()->with('error', 'Product not found');
+        }
     }
     public function addToCart($id)
     {

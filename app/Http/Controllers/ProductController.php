@@ -191,6 +191,9 @@ class ProductController extends Controller
         @File::makeDirectory(public_path() . "/" . $folder);
         $filename = time() . "_" . $file->getClientOriginalName();
         $file->move($folder, $filename);
+        $product = Product::find($request->product_id);
+        $product->image = $filename;
+        $product->save();
         return redirect()->route('produk.index')->with('status', 'photo terupload');
     }
     public function delPhoto(Request $request)

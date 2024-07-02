@@ -89,7 +89,7 @@
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-title">
-                            <a href="{{ route('produk.show', $p->id) }}">{{ $p->name }}</a>
+                            <a href="{{ route('laralux.show', $p->id) }}">{{ $p->name }}</a>
                             <div class="ratting">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -100,10 +100,10 @@
                         </div>
                         <div class="product-image">
                             <a href="product-detail.html">
-                                @if ($p->image == null)
-                                    <img src="{{ asset('images/blank.jpg') }}">
-                                @else
-                                    <img src="{{ asset('images/' . $p->image) }}" alt="Product Image">
+                                @if ($p->filenames)
+                                @foreach ($p->filenames as $filename)
+                                <img height='100px' src="{{ asset('product/' . $p->id . '/' . $filename) }}" />
+                                @endforeach
                                 @endif
 
                             </a>
