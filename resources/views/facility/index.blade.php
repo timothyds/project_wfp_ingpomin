@@ -4,7 +4,7 @@
     <div class="container-fluid">
         @if (Auth::user()->role == 'owner')
             <a class="btn btn-success" href="{{ route('facility.create') }}">+ New Facility</a>
-            <a href="#modalCreateCust" data-toggle="modal" class="btn btn-info">+ New Facility(with Modals)</a>
+            <a href="#modalCreateFacility" data-toggle="modal" class="btn btn-info">+ New Facility(with Modals)</a>
         @endif
         @csrf
         <h2>Welcome page</h2>
@@ -109,7 +109,7 @@
             });
         }
 
-        function saveDataUpdateTD(customer_id) {
+        function saveDataUpdateTD(facility_id) {
             var eName = $('#eName').val();
             var eDescription = $('#eDescription').val();
             console.log(eName); //debug->print to browser console
@@ -126,7 +126,7 @@
                 success: function(data) {
                     if (data.status == "oke") {
                         $('#td_name_' + facility_id).html(eName);
-                        $('#td_description_' + facility_id).html(eDeDescription);
+                        $('#td_description_' + facility_id).html(eDescription);
                         $('#modalEditB').modal('hide');
                     }
                 }
