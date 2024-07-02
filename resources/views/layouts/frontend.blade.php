@@ -146,6 +146,9 @@
             'hotel' => 'Hotel',
             'transaction' => 'Transaction',
             'laralux' => '',
+            'facility' => 'Facility',
+            'tipe' => 'Hotel Type',
+            'produkType' => 'Product Type'
         ];
 
         $currentUrl = request()->path();

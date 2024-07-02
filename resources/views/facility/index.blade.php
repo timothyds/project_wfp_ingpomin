@@ -109,7 +109,7 @@
             });
         }
 
-        function saveDataUpdateTD(customer_id) {
+        function saveDataUpdateTD(facility_id) {
             var eName = $('#eName').val();
             var eDescription = $('#eDescription').val();
             console.log(eName); //debug->print to browser console
@@ -126,7 +126,7 @@
                 success: function(data) {
                     if (data.status == "oke") {
                         $('#td_name_' + facility_id).html(eName);
-                        $('#td_description_' + facility_id).html(eDeDescription);
+                        $('#td_description_' + facility_id).html(eDescription);
                         $('#modalEditB').modal('hide');
                     }
                 }
