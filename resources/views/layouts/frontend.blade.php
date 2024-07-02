@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>E Store - eCommerce HTML Template</title>
+    <title>LaraLux - Hotel Reservation</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
@@ -12,15 +12,11 @@
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Fonts -->
-    <link
-        href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap') }}"
-        rel="stylesheet">
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap') }}" rel="stylesheet">
 
     <!-- CSS Libraries -->
-    <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}"
-        rel="stylesheet">
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/slick/slick.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/slick/slick-theme.css') }}" rel="stylesheet">
 
@@ -35,11 +31,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <i class="fa fa-envelope"></i>
-                    support@email.com
+                    laralux@gmail.com
                 </div>
                 <div class="col-sm-6">
                     <i class="fa fa-phone-alt"></i>
-                    +012-345-6789
+                    +62 822-3056-0212
                 </div>
             </div>
         </div>
@@ -59,35 +55,34 @@
                     <div class="navbar-nav mr-auto">
                         <a href="{{ url('laralux') }}" class="nav-item nav-link active">Home</a>
                         {{-- <a href="{{ url('laralux') }}" class="nav-item nav-link ">Products</a> --}}
-                        <a href="{{ url('produk') }}" class="nav-item nav-link">Products</a>
-                        <a href="{{ url('laralux/user/cart') }}" class="nav-item nav-link">Cart</a>
+                        <a href="{{ url('laralux/user/transaction') }}" class="nav-item nav-link">Transaction</a>
+                        <a href="{{ route('cart') }}" class="nav-item nav-link">Cart</a>
                         {{-- <a href="checkout.html" class="nav-item nav-link">Checkout</a> --}}
                         {{-- <a href="my-account.html" class="nav-item nav-link">My Account</a> --}}
                         @if (Auth::user()->role == 'staff' || Auth::user()->role == 'owner')
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                                <div class="dropdown-menu">
-                                    @can('delete-permission', Auth::user())
-                                        <a href="{{ url('customer') }}" class="dropdown-item">Customer</a>
-                                    @endcan
-                                    <a href="{{ url('transaction') }}" class="dropdown-item">Transaction</a>
-                                    <a href="{{ url('tipe') }}" class="dropdown-item">Hotel Type</a>
-                                    <a href="{{ url('hotel') }}" class="dropdown-item">List Hotel</a>
-                                    <a href="{{ url('produkType') }}" class="dropdown-item">Produk Type</a>
-                                    <a href="{{ url('facility') }}" class="dropdown-item">Facility</a>
-                                    <a href="login.html" class="dropdown-item">Login & Register</a>
-                                    <a href="contact.html" class="dropdown-item">Contact Us</a>
-                                </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                            <div class="dropdown-menu">
+                                @can('delete-permission', Auth::user())
+                                <a href="{{ url('customer') }}" class="dropdown-item">Customer</a>
+                                @endcan
+                                <a href="{{ url('produk') }}" class="nav-item nav-link">Products</a>
+                                <a href="{{ url('transaction') }}" class="dropdown-item">Transaction</a>
+                                <a href="{{ url('tipe') }}" class="dropdown-item">Hotel Type</a>
+                                <a href="{{ url('hotel') }}" class="dropdown-item">List Hotel</a>
+                                <a href="{{ url('produkType') }}" class="dropdown-item">Produk Type</a>
+                                <a href="{{ url('facility') }}" class="dropdown-item">Facility</a>
+                                <a href="login.html" class="dropdown-item">Login & Register</a>
+                                <a href="contact.html" class="dropdown-item">Contact Us</a>
                             </div>
+                        </div>
                         @endif
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <span class="nav-link dropdown-toggle"
-                                data-toggle="dropdown">{{ Auth::user()->name }}</span>
+                            <span class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</span>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i>{{ __('Logout') }}</i>
                                 </a>
@@ -111,7 +106,7 @@
                 <div class="col-md-3">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="{{ asset('assets/img/logo.png') }}"alt="Logo">
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                         </a>
                     </div>
                 </div>
@@ -131,6 +126,10 @@
                             <i class="fa fa-shopping-cart"></i>
                             <span>(0)</span>
                         </a>
+                        <button class="btn ml-3">
+                            <i class="fa fa-star"></i>
+                            <span>{{ Auth::user()->point }}</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -139,20 +138,20 @@
     <!-- Bottom Bar End -->
 
     @php
-        $pageNames = [
-            'customer' => 'Customer',
-            'produk' => 'Products',
-            'laralux/user/cart' => 'Cart',
-            'hotel' => 'Hotel',
-            'transaction' => 'Transaction',
-            'laralux' => '',
-            'facility' => 'Facility',
-            'tipe' => 'Hotel Type',
-            'produkType' => 'Product Type'
-        ];
+    $pageNames = [
+    'customer' => 'Customer',
+    'produk' => 'Products',
+    'laralux/user/cart' => 'Cart',
+    'hotel' => 'Hotel',
+    'transaction' => 'Transaction',
+    'laralux' => '',
+    'facility' => 'Facility',
+    'tipe' => 'Hotel Type',
+    'produkType' => 'Product Type'
+    ];
 
-        $currentUrl = request()->path();
-        $pageName = $pageNames[$currentUrl] ?? '';
+    $currentUrl = request()->path();
+    $pageName = $pageNames[$currentUrl] ?? '';
     @endphp
 
     <!-- Breadcrumb Start -->
@@ -161,7 +160,7 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('laralux') }}">Home</a></li>
                 @if ($pageName)
-                    <li class="breadcrumb-item active">{{ $pageName }}</li>
+                <li class="breadcrumb-item active">{{ $pageName }}</li>
                 @endif
             </ul>
         </div>
@@ -199,9 +198,9 @@
                     <div class="footer-widget">
                         <h2>Get in Touch</h2>
                         <div class="contact-info">
-                            <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                            <p><i class="fa fa-envelope"></i>email@example.com</p>
-                            <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                            <p><i class="fa fa-map-marker"></i>Surabaya, Indonesia</p>
+                            <p><i class="fa fa-envelope"></i>laralux@gmail.com</p>
+                            <p><i class="fa fa-phone"></i>+62 822-3056-0212</p>
                         </div>
                     </div>
                 </div>
@@ -248,15 +247,15 @@
                 <div class="col-md-6">
                     <div class="payment-method">
                         <h2>We Accept:</h2>
-                        <img src="{{ asset('img/payment-method.png') }}" alt="Payment Method" />
+                        <img src="{{ asset('frontend/img/payment-method.png') }}" alt="Payment Method" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="payment-security">
                         <h2>Secured By:</h2>
-                        <img src="{{ asset('img/godaddy.svg') }}" alt="Payment Security" />
-                        <img src="{{ asset('img/norton.svg') }}" alt="Payment Security" />
-                        <img src="{{ asset('img/ssl.svg') }}" alt="Payment Security" />
+                        <img src="{{ asset('frontend/img/godaddy.svg') }}" alt="Payment Security" />
+                        <img src="{{ asset('frontend/img/norton.svg') }}" alt="Payment Security" />
+                        <img src="{{ asset('frontend/img/ssl.svg') }}" alt="Payment Security" />
                     </div>
                 </div>
             </div>
