@@ -16,8 +16,7 @@
             <small id="tipeHelp" class="form-text text-muted">Please determine the hotel email.</small>
             <input type="number" name="rating" step="any" class="form-control" id="ratingtxt" aria-describedby="tipeHelp" placeholder="Enter Hotel rating">
             <small id="tipeHelp" class="form-text text-muted">Please determine the hotel rating.</small>
-            <input type="text" name="image" class="form-control" id="tipetxt" aria-describedby="tipeHelp" placeholder="Enter Hotel image">
-            <small id="tipeHelp" class="form-text text-muted">Please determine your hotel image.</small>
+            
             <select class="form-control" name="tipe">
                 @foreach ($tipes as $t)
                 <option value="{{$t->id}}">{{$t->name}}</option>

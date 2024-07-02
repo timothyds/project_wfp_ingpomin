@@ -256,12 +256,10 @@
         var eName = $('#eName').val();
         var ePrice = $('#ePrice').val();
         var eAvail = $('#eAvail').val();
-        var eImage = $('#eImage').val();
 
         console.log(eName);
         console.log(ePrice);
         console.log(eAvail);
-        console.log(eImage);
         $.ajax({
             type: 'POST',
             url: '{{route("produk.saveDataTD")}}',
@@ -270,7 +268,6 @@
                 'id': product_id,
                 'name': eName,
                 'price': ePrice,
-                'image': eImage,
                 'available_room': eAvail,
 
             },
@@ -280,10 +277,12 @@
                     $('#td_price_' + product_id).html(ePrice);
                     $('#td_avail_' + product_id).html(eAvail);
                     $('#modalEditB').modal('hide');
+                    $('.modal-backdrop').remove();
                 }
             }
         })
     }
+
     function deleteDataRemoveTR(product_id) {
         $.ajax({
             type: 'POST',

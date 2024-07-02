@@ -43,7 +43,6 @@ class HotelController extends Controller
             'phone'=>'required',
             'email' => 'required',
             'rating'=>'required',
-            'image' => 'required',
             'tipe' => 'required'
         ]);
         // Type::create($request->all());
@@ -54,7 +53,6 @@ class HotelController extends Controller
         $data->phone = $request->get('phone');
         $data->email = $request->get('email');
         $data->rating = $request->get('rating');
-        $data->image = $request->get('image');
         $data->hotel_type_id = $request->get('tipe');
 
         $data->save();
@@ -106,7 +104,6 @@ class HotelController extends Controller
         $updatedData->phone = $request->get('phone');
         $updatedData->email = $request->get('email');
         $updatedData->rating = $request->get('rating');
-        $updatedData->image = $request->get('image');
         $updatedData->hotel_type_id = $request->get('tipe');
         $updatedData->save();
         return redirect()->route('hotel.index')->with('status', 'Horray ! Your data is successfully updated !');

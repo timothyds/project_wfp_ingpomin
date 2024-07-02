@@ -27,8 +27,10 @@
                                     <div class="img">
                                         @if ($item['photo'] == NULL)
                                         <a href="#"><img src="{{asset('images/blank.jpg') }}" alt="Image"></a>
-                                        @else
-                                        <a href="#"><img src="{{asset('images/'.$item['photo']) }}" alt="Image"></a>
+                                        @elseif(!empty($item->filenames))
+                                        @foreach ($item->filenames as $filename)
+                                        <img height='250px' src="{{ asset('product/' . $item->id . '/' . $filename) }}" />
+                                        @endforeach
                                         @endif
                                         <p>{{$item['name']}}</p>
                                     </div>

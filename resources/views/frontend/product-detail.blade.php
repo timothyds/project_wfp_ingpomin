@@ -18,7 +18,7 @@
                                 <img width="200" src="{{asset('images/blank.jpg')}}">
                                 @elseif(!empty($product->filenames))
                                 @foreach ($product->filenames as $filename)
-                                <img height='250px' src="{{ asset('product/' . $product->id . '/' . $filename) }}" />
+                                <img height='200px' src="{{ asset('product/' . $product->id . '/' . $filename) }}" />
                                 @endforeach
                                 @endif
                             </div>
