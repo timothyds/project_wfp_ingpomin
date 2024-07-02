@@ -71,6 +71,7 @@ class CustomerController extends Controller
         $updatedData = Customer::find($id);
         $updatedData->name = $request->name;
         $updatedData->address = $request->get('address');
+        $updatedData->point = $request->point;
         $updatedData->save();
         return redirect()->route('customer.index')->with('status', 'Horray ! Your data is successfully updated !');
     }
@@ -106,6 +107,7 @@ class CustomerController extends Controller
         $data = Customer::find($id);
         $data->name = $request->name;
         $data->address = $request->address;
+        $data->point = $request->point;
         $data->save();
         return response()->json(array(
             'status' => 'oke',

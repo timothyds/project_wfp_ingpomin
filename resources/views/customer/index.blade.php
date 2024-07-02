@@ -98,7 +98,7 @@
         function getEditFormB(customer_id) {
             $.ajax({
                 type: 'POST',
-                url: '{{ route('customer.getEditFormB') }}',
+                url: '{{ route("customer.getEditFormB") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': customer_id
@@ -116,7 +116,7 @@
             console.log(eAddress);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('customer.saveDataTD') }}',
+                url: '{{ route("customer.saveDataTD") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': customer_id,
@@ -136,7 +136,7 @@
         function deleteDataRemoveTR(customer_id) {
             $.ajax({
                 type: 'POST',
-                url: '{{ route('customer.deleteData') }}',
+                url: '{{ route("customer.deleteData") }}',
                 data: {
                     '_token': '<?php echo csrf_token(); ?>',
                     'id': customer_id
