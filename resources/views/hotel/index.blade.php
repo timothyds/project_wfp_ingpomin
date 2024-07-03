@@ -48,7 +48,7 @@
                     <form method="POST" action="{{route('hotel.destroy',$d->id)}}">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$d->id}}-{{$d->name}} ? ')" value="Delete" action="{{route('hotel.destroy',$d->id)}}">
+                        <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$d->id}}-{{$d->name}} ? ')" value="DELETE" action="{{route('hotel.destroy',$d->id)}}">
                     </form>
                     @endcan
                 </td>
