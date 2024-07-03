@@ -7,7 +7,6 @@
             <a href="#modalCreateCust" data-toggle="modal" class="btn btn-info">+ New Facility(with Modals)</a>
         @endif
         @csrf
-        <h2>Welcome page</h2>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif

@@ -5,7 +5,6 @@
     <a class="btn btn-success" href="{{ route('produkType.create') }}">+ New Product Type</a>
     <a href="#modalCreate" data-toggle="modal" class="btn btn-info">+ New Product Type(with Modals)</a>
     @csrf
-    <h2>Welcome page</h2>
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
