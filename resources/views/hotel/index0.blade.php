@@ -42,60 +42,18 @@
         </div>
         </br>
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-view-top">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="product-search">
-                                <input type="email" value="Search">
-                                <button><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="product-short">
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Newest</a>
-                                        <a href="#" class="dropdown-item">Popular</a>
-                                        <a href="#" class="dropdown-item">Most sale</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="product-price-range">
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">$0 to $50</a>
-                                        <a href="#" class="dropdown-item">$51 to $100</a>
-                                        <a href="#" class="dropdown-item">$101 to $150</a>
-                                        <a href="#" class="dropdown-item">$151 to $200</a>
-                                        <a href="#" class="dropdown-item">$201 to $250</a>
-                                        <a href="#" class="dropdown-item">$251 to $300</a>
-                                        <a href="#" class="dropdown-item">$301 to $350</a>
-                                        <a href="#" class="dropdown-item">$351 to $400</a>
-                                        <a href="#" class="dropdown-item">$401 to $450</a>
-                                        <a href="#" class="dropdown-item">$451 to $500</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @foreach ($datas as $p)
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-title">
                             <a href="{{ route('hotel.show', $p->id) }}">{{ $p->name }}</a>
                             <div class="ratting">
+                                @for ($i = 1; $i <= $p->rating; $i++)
                                 <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                                @endfor
+                                @if ($p->rating/.5%2 == 1)
+                                <i class="fa fa-star-half"></i>
+                                @endif
                             </div>
                         </div>
                         <div class="product-image">
@@ -107,15 +65,10 @@
                                 @endif
 
                             </a>
-                            <div class="product-action">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                                <a href=""><i class="fa fa-search"></i></a>
-                            </div>
                         </div>
                         <div class="product-price">
                             <h3>{{ $p->hotel_type->name }}</h3>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                            <a class="btn" href="{{ route('hotel.show', $p->id) }}"><i class="fa fa-eye"></i>See Product(s)</a>
                         </div>
                     </div>
                 </div>

@@ -92,7 +92,7 @@ Route::post('hotel/simpanPhoto', [HotelController::class, 'simpanPhoto']);
 
 Route::get('transactions/list', [TransactionController::class, 'showTransactions'])->name('showTransactionList');
 Route::get('transactions/listcust', [TransactionController::class, 'showTransactionsCustomer'])->name('showTransactionListCust');
-
+Route::get('transactions/receipt', [TransactionController::class, 'checkout'])->name('transaction.receipt');
 
 
 Auth::routes();

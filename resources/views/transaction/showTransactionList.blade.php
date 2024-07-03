@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>Transaction ID</th>
-                    <th>User ID</th>
+                    <th>User Name</th>
                     <th>Transaction Date</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -19,7 +19,7 @@
                 @foreach($transactionDetails as $detail)
                 <tr>
                     <td>{{ $detail['transaction_id'] }}</td>
-                    <td>{{ $detail['user_id'] }}</td>
+                    <td>{{ $detail['user_name'] }}</td>
                     <td>{{ $detail['transaction_date'] }}</td>
                     <td>{{ $detail['product_name'] }}</td>
                     <td>{{ $detail['quantity'] }}</td>

@@ -42,61 +42,11 @@
         </div>
         </br>
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-view-top">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="product-search">
-                                <input type="email" value="Search">
-                                <button><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="product-short">
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Newest</a>
-                                        <a href="#" class="dropdown-item">Popular</a>
-                                        <a href="#" class="dropdown-item">Most sale</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="product-price-range">
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">$0 to $50</a>
-                                        <a href="#" class="dropdown-item">$51 to $100</a>
-                                        <a href="#" class="dropdown-item">$101 to $150</a>
-                                        <a href="#" class="dropdown-item">$151 to $200</a>
-                                        <a href="#" class="dropdown-item">$201 to $250</a>
-                                        <a href="#" class="dropdown-item">$251 to $300</a>
-                                        <a href="#" class="dropdown-item">$301 to $350</a>
-                                        <a href="#" class="dropdown-item">$351 to $400</a>
-                                        <a href="#" class="dropdown-item">$401 to $450</a>
-                                        <a href="#" class="dropdown-item">$451 to $500</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @foreach ($data as $p)
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-title">
                             <a href="{{ route('laralux.show', $p->id) }}">{{ $p->name }}</a>
-                            <div class="ratting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
                         </div>
                         <div class="product-image">
                             <a href="product-detail.html">
@@ -108,16 +58,14 @@
 
                             </a>
                             <div class="product-action">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                                <a href=""><i class="fa fa-search"></i></a>
+                                <a href="{{ route('laralux.show', $p->id) }}"><i class="fa fa-cart-plus"></i></a>
                             </div>
                         </div>
                         <div class="product-price">
                             <h3><span>{{ $p->product_type->name }}</span></h3>
                             <br>
                             <h3><span>IDR</span>{{number_format( $p->price,0,',',',') }}</h3>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                            <a class="btn" href="{{ route('laralux.show', $p->id) }}"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
                         </div>
                     </div>
                 </div>

@@ -221,7 +221,7 @@ class TransactionController extends Controller
             foreach ($transaction->products as $product) {
                 $transactionDetails[] = [
                     'transaction_id' => $transaction->id,
-                    'user_id' => $transaction->user_id, 
+                    'user_name' => $transaction->user->name, 
                     'transaction_date' => $transaction->transaction_date,
                     'product_name' => $product->name,
                     'quantity' => $product->pivot->quantity,

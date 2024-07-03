@@ -68,5 +68,10 @@ class Transaction extends Model
         // Update user points
         $user->point += $totalPoints;
         $user->save();
+
+        $tax = $total * 0.11;
+        $grandTotal = $total + $tax;
+
+        return ['total' => $total, 'tax' => $tax, 'grandTotal' => $grandTotal];
     }
 }

@@ -135,9 +135,11 @@ class FrontEndController extends Controller
         $t->user_id = $user->id;
         $t->transaction_date = Carbon::now()->toDateTimeString();
         $t->save();
-        //insert into junction table product_transaction using eloquent
-        $t->insertProducts($cart, $user);
+        
+        $totals = $t->insertProducts($cart, $user);
+
         session()->forget('cart');
-        return redirect()->route('laralux.index')->with('status', 'Checkout berhasil');
+
+        return view('transaction.receipt', compact('t', 'totals'));
     }
 }

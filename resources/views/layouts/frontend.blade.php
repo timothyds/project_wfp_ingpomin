@@ -105,7 +105,7 @@
             <div class="row align-items-center">
                 <div class="col-md-3">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{route('laralux.index')}}">
                             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                         </a>
                     </div>
@@ -118,13 +118,12 @@
                 </div>
                 <div class="col-md-3">
                     <div class="user">
-                        <a href="wishlist.html" class="btn wishlist">
-                            <i class="fa fa-heart"></i>
-                            <span>(0)</span>
-                        </a>
                         <a href="{{ url('laralux/user/cart') }}" class="btn cart">
                             <i class="fa fa-shopping-cart"></i>
-                            <span>(0)</span>
+                            @php
+                            $cart = sizeof(session('cart'));
+                            @endphp
+                            <span>({{$cart}})</span>
                         </a>
                         <button class="btn ml-3">
                             <i class="fa fa-star"></i>
