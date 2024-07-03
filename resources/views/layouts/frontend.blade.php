@@ -110,20 +110,15 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="search">
-                        <input type="text" placeholder="Search">
-                        <button><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
+                <div class="col-md-6"></div>
                 <div class="col-md-3">
                     <div class="user">
                         <a href="{{ url('laralux/user/cart') }}" class="btn cart">
                             <i class="fa fa-shopping-cart"></i>
                             @php
-                            $cart = sizeof(session('cart'));
+                            $cartCount = count(session()->get('cart', []));
                             @endphp
-                            <span>({{$cart}})</span>
+                            <span>({{$cartCount}})</span>
                         </a>
                         <button class="btn ml-3">
                             <i class="fa fa-star"></i>

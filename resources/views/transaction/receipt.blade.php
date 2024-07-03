@@ -12,9 +12,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nama Produk</th>
-                    <th>Jumlah</th>
-                    <th>Harga Satuan</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
                     <th>Subtotal</th>
                 </tr>
             </thead>
@@ -30,11 +30,15 @@
             </tbody>
         </table>
         <hr>
-        <p><strong>Total:</strong> Rp. {{ number_format($totals['total'], 2) }}</p>
+        <p><strong>Total Before Redemption:</strong> Rp. {{ number_format($preRedemptionTotal, 2) }}</p>
+        <p><strong>Total After Redemption:</strong> Rp. {{ number_format($totals['total'], 2) }}</p>
         <p><strong>PPN (11%):</strong> Rp. {{ number_format($totals['tax'], 2) }}</p>
+        @if ($totals['discount'] > 0)
+        <p><strong>Discount from Points:</strong> -Rp. {{ number_format($totals['discount'], 2) }}</p>
+        @endif
         <p><strong>Grand Total:</strong> Rp. {{ number_format($totals['grandTotal'], 2) }}</p>
         <hr>
-        <p>Terima kasih atas pembelian Anda!</p>
+        <p>Thank you for your purchase!</p>
     </div>
 </div>
 
@@ -46,24 +50,30 @@
         border: 1px solid #ddd;
         background: #fff;
     }
+
     .receipt h1 {
         text-align: center;
         font-size: 24px;
         margin-bottom: 20px;
     }
+
     .receipt hr {
         border-top: 1px solid #ddd;
         margin: 20px 0;
     }
+
     .receipt table {
         width: 100%;
         border-collapse: collapse;
     }
-    .receipt table th, .receipt table td {
+
+    .receipt table th,
+    .receipt table td {
         padding: 10px;
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
+
     .receipt p {
         margin: 10px 0;
     }

@@ -70,12 +70,6 @@
             <div class="cart-page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="coupon">
-                            <input type="text" placeholder="Coupon Code">
-                            <button>Apply Code</button>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="cart-summary">
                             <div class="cart-content">
                                 <h1>Cart Summary</h1>
@@ -86,6 +80,10 @@
 
                                 <form action="{{ route('checkout') }}" method="POST" style="display:inline;">
                                     @csrf
+                                    <div class="form-group">
+                                        <label for="points">Points to Redeem:</label>
+                                        <input type="number" id="points" name="points" min="0" step="1" value="0" max="{{ Auth::user()->point }}">
+                                    </div>
                                     <button type="submit" class="btn btn-xs">Checkout</button>
                                 </form>
                             </div>

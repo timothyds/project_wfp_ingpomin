@@ -72,6 +72,6 @@ class Transaction extends Model
         $tax = $total * 0.11;
         $grandTotal = $total + $tax;
 
-        return ['total' => $total, 'tax' => $tax, 'grandTotal' => $grandTotal];
+        return ['total' => $total, 'tax' => $tax, 'grandTotal' => $grandTotal, 'pointsEarned' => $totalPoints];
     }
 }

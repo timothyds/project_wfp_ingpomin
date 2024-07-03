@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Hotel;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,19 +128,43 @@ class FrontEndController extends Controller
         session()->put('cart', $cart);
         return redirect()->back()->with("status", "Produk Telah dibuang dari Cart");
     }
-    public function checkout()
+    public function cartCount()
+    {
+        $cart = session()->get('cart', []);
+        $cartCount = count($cart);
+        return view('layouts.frontend', compact('cartCount'));
+    }
+    public function checkout(Request $request)
     {
         $cart = session('cart');
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
+
+        $pointsToRedeem = $request->input('points', 0);
+
         $t = new Transaction();
         $t->user_id = $user->id;
         $t->transaction_date = Carbon::now()->toDateTimeString();
         $t->save();
-        
+
         $totals = $t->insertProducts($cart, $user);
+        $preRedemptionTotal = $totals['total'];
+
+        if ($totals['total'] >= 100000) {
+            $pointsToRedeem = min($pointsToRedeem, floor($totals['total'] / 100000));
+            $discount = $pointsToRedeem * 100000;
+            $user->point -= $pointsToRedeem;
+            $user->save();
+
+            $totals['total'] -= $discount;
+            $totals['tax'] = $totals['total'] * 0.11;
+            $totals['grandTotal'] = $totals['total'] + $totals['tax'];
+            $totals['discount'] = $discount;
+        } else {
+            $totals['discount'] = 0;
+        }
 
         session()->forget('cart');
 
-        return view('transaction.receipt', compact('t', 'totals'));
+        return view('transaction.receipt', compact('t', 'totals', 'preRedemptionTotal'));
     }
 }

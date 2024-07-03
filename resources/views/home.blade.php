@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{route('laralux.index')}}">Go To Laralux</a>
+                    <a href="{{route('laralux.index')}}" class="btn btn-light">Go To LaraLux</a>
                 </div>
             </div>
         </div>
