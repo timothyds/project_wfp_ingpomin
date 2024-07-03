@@ -14,7 +14,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Customer</th>
-                <th scope="col">Alamat</th>
+                <th scope="col">Email</th>
+                <th scope="col">Point</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
                 <th scope="col">Action</th>
@@ -25,10 +26,10 @@
             <tr id="tr_{{ $d->id }}">
                 <th scope="row">{{ $d->id }}</th>
                 <td id="td_name_{{ $d->id }}">{{ $d->name }}</td>
-                <td id="td_address_{{ $d->id }}">{{ $d->address }}</td>
+                <td id="td_address_{{ $d->id }}">{{ $d->email }}</td>
+                <td>{{ $d->point }}</td>
                 <td>{{ $d->created_at }}</td>
                 <td>{{ $d->updated_at }}</td>
-                <td><a class="btn btn-warning" href="{{ route('customer.edit', $d->id) }}">Edit</a></td>
                 <td>
                     <a href="#modalEditB" class="btn btn-info" data-toggle="modal" onclick="getEditFormB({{ $d->id }})">Edit</a>
                     @can('delete-permission', Auth::user())

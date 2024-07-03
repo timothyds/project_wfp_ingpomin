@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -12,8 +14,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $data = Customer::all();
+        $data = DB::table('users')->where('role', 'pembeli')->get();
         return view('customer.index', compact('data'));
+    }
+
+    public function showCust() {
     }
 
     /**
