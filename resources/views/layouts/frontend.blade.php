@@ -72,8 +72,6 @@
                                 <a href="{{ url('hotel') }}" class="dropdown-item">List Hotel</a>
                                 <a href="{{ url('produkType') }}" class="dropdown-item">Produk Type</a>
                                 <a href="{{ url('facility') }}" class="dropdown-item">Facility</a>
-                                <a href="login.html" class="dropdown-item">Login & Register</a>
-                                <a href="contact.html" class="dropdown-item">Contact Us</a>
                             </div>
                         </div>
                         @endif
