@@ -94,7 +94,7 @@ Route::get('transactions/list', [TransactionController::class, 'showTransactions
 Route::get('transactions/listcust', [TransactionController::class, 'showTransactionsCustomer'])->name('showTransactionListCust');
 Route::get('transactions/receipt', [TransactionController::class, 'checkout'])->name('transaction.receipt');
 
-
+Route::get('/reports/top-customer-points', [FrontEndController::class, 'topPoints'])->name('frontend.topMember');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

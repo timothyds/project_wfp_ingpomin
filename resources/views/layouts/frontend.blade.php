@@ -57,6 +57,8 @@
                         {{-- <a href="{{ url('laralux') }}" class="nav-item nav-link ">Products</a> --}}
                         <a href="{{ route('cart') }}" class="nav-item nav-link">Cart</a>
                         <a href="{{ route('showTransactionListCust') }}" class="nav-item nav-link">Transaction History</a>
+                        <a href="{{ route('frontend.topMember') }}" class="nav-item nav-link">TopMember</a>
+                        
                         {{-- <a href="checkout.html" class="nav-item nav-link">Checkout</a> --}}
                         {{-- <a href="my-account.html" class="nav-item nav-link">My Account</a> --}}
                         @if (Auth::user()->role == 'staff' || Auth::user()->role == 'owner')

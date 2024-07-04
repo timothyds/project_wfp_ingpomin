@@ -167,4 +167,11 @@ class FrontEndController extends Controller
 
         return view('transaction.receipt', compact('t', 'totals', 'preRedemptionTotal'));
     }
+    public function topPoints(){
+        $user = DB::select('SELECT name, point FROM users order by point DESC');
+        // dd($user);
+        return view('frontend.topMember',compact('user'));
+    }
+    
+
 }
