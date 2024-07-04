@@ -64,7 +64,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $data = Customer::find($id);
+        $data = User::find($id);
         return view('customer.edit', compact('data'));
     }
 
@@ -73,10 +73,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updatedData = Customer::find($id);
+        $updatedData = User::find($id);
         $updatedData->name = $request->name;
-        $updatedData->address = $request->get('address');
-        $updatedData->point = $request->point;
+        $updatedData->email = $request->get('email');
         $updatedData->save();
         return redirect()->route('customer.index')->with('status', 'Horray ! Your data is successfully updated !');
     }
@@ -100,7 +99,7 @@ class CustomerController extends Controller
     public function getEditFormB(Request $request)
     {
         $id = $request->id;
-        $data = Customer::find($id);
+        $data = User::find($id);
         return response()->json(array(
             'status' => 'oke',
             'msg' => view('customer.getEditFormB', compact('data'))->render()
@@ -109,10 +108,9 @@ class CustomerController extends Controller
     public function saveDataTD(Request $request)
     {
         $id = $request->id;
-        $data = Customer::find($id);
+        $data = User::find($id);
         $data->name = $request->name;
-        $data->address = $request->address;
-        $data->point = $request->point;
+        $data->email = $request->email;
         $data->save();
         return response()->json(array(
             'status' => 'oke',
@@ -122,11 +120,11 @@ class CustomerController extends Controller
     public function deleteData(Request $request)
     {
         $id = $request->id;
-        $data = Customer::find($id);
+        $data = User::find($id);
         $data->delete();
         return response()->json(array(
             'status' => 'oke',
-            'msg' => 'type data is removed !'
+            'msg' => 'customer data is removed !'
         ), 200);
     }
 }

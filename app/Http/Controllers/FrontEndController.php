@@ -172,6 +172,9 @@ class FrontEndController extends Controller
         // dd($user);
         return view('frontend.topMember',compact('user'));
     }
-    
+    public function topReserved(){
+        $top = DB::select('select product_id, COUNT(*) as reservation_count from product_transaction group by product_id order by reservation_count DESC');
+        return view('frontend.topReserved',compact('top'));
+    }
 
 }

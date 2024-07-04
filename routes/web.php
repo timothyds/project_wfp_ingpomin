@@ -95,6 +95,8 @@ Route::get('transactions/listcust', [TransactionController::class, 'showTransact
 Route::get('transactions/receipt', [TransactionController::class, 'checkout'])->name('transaction.receipt');
 
 Route::get('/reports/top-customer-points', [FrontEndController::class, 'topPoints'])->name('frontend.topMember');
+Route::get('/reports/top-reserved', [FrontEndController::class, 'topReserved'])->name('frontend.topReserved');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

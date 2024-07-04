@@ -2,9 +2,6 @@
 
 @section('content')
 <div class="container-fluid">
-    @if (Auth::user()->role == 'owner')
-    <a class="btn btn-success" href="{{ route('customer.create') }}">+ New Customer</a>
-    @endif
     @csrf
     @if (session('status'))
     <div class="alert alert-success">{{ session('status') }}</div>
@@ -26,7 +23,7 @@
             <tr id="tr_{{ $d->id }}">
                 <th scope="row">{{ $d->id }}</th>
                 <td id="td_name_{{ $d->id }}">{{ $d->name }}</td>
-                <td id="td_address_{{ $d->id }}">{{ $d->email }}</td>
+                <td id="td_email_{{ $d->id }}">{{ $d->email }}</td>
                 <td>{{ $d->point }}</td>
                 <td>{{ $d->created_at }}</td>
                 <td>{{ $d->updated_at }}</td>
@@ -102,9 +99,9 @@
 
     function saveDataUpdateTD(customer_id) {
         var eName = $('#eName').val();
-        var eAddress = $('#eAddress').val();
+        var eEmail = $('#eEmail').val();
         console.log(eName); //debug->print to browser console
-        console.log(eAddress);
+        console.log(eEmail);
         $.ajax({
             type: 'POST',
             url: '{{ route("customer.saveDataTD") }}',
@@ -112,12 +109,12 @@
                 '_token': '<?php echo csrf_token(); ?>',
                 'id': customer_id,
                 'name': eName,
-                'address': eAddress
+                'email': eEmail
             },
             success: function(data) {
                 if (data.status == "oke") {
                     $('#td_name_' + customer_id).html(eName);
-                    $('#td_address_' + customer_id).html(eAddress);
+                    $('#td_email_' + customer_id).html(eEmail);
                     $('#modalEditB').modal('hide');
                 }
             }
