@@ -67,7 +67,6 @@ class HotelTypeController extends Controller
     {
         $updatedData = Hotel_Type::find($id);
         $updatedData->name = $request->name;
-        $updatedData->description = $request->desc;
         $updatedData->save();
         return redirect()->route('tipe.index')->with('status', 'Horray! Your data is successfully updated!');
     }

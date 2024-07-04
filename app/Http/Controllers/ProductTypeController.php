@@ -36,7 +36,7 @@ class ProductTypeController extends Controller
         $data->name = $request->get('name');
         $data->save();
 
-        return redirect('pType')->with('status', 'Berhasil Ditambah!');
+        return redirect('produkType')->with('status', 'Berhasil Ditambah!');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductTypeController extends Controller
         $updatedData = Product_Type::find($id);
         $updatedData->name = $request->name;
         $updatedData->save();
-        return redirect()->route('pType.index')->with('status', 'Horray! Your data is successfully updated!');
+        return redirect()->route('produkType.index')->with('status', 'Horray! Your data is successfully updated!');
     }
 
     /**
@@ -74,5 +74,14 @@ class ProductTypeController extends Controller
     public function destroy(Product_Type $product_Type)
     {
         //
+    }
+    public function getEditFormB(Request $request)
+    {
+        $id = $request->id;
+        $data = Product_Type::find($id);
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('pType.getEditFormB', compact('data'))->render()
+        ), 200);
     }
 }

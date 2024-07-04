@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TypeController;
 use App\Models\Hotel_Type;
+use App\Models\Product_Type;
 use App\Models\Transaction;
 use Database\Seeders\ProductTypeSeeder;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,9 @@ Route::post('customtrans/deleteData', [TransactionController::class, 'deleteData
 Route::post('customfacility/getEditFormB', [FacilityController::class, 'getEditFormB'])->name('facility.getEditFormB');
 Route::post('customfacility/saveDataTD', [FacilityController::class, 'saveDataTD'])->name('facility.saveDataTD');
 Route::post('customfacility/deleteData', [FacilityController::class, 'deleteData'])->name('facility.deleteData');
+Route::post('customproducttype/getEditFrom', [Product_Type::class, 'getEditForm'])->name('pType.getEditForm');
+Route::post('customproducttype/saveDataTD', [Product_Type::class, 'saveDataTD'])->name('pType.saveDataTD');
+Route::post('customproducttype/deleteData', [Product_Type::class, 'deleteData'])->name('pType.deleteData');
 
 Route::get('hotel/uploadLogo/{hotel_id}', [HotelController::class, 'uploadLogo']);
 Route::post('produk/delPhoto', [ProductController::class, 'delPhoto']);

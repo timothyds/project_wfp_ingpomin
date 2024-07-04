@@ -91,7 +91,7 @@
     function getEditForm(type_id) {
         $.ajax({
             type: 'POST',
-            url: '{{ route("tipe.getEditForm") }}',
+            url: '{{ route("pType.getEditForm") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'id': type_id
@@ -102,38 +102,21 @@
         });
     }
 
-    function getEditFormB(type_id) {
-        $.ajax({
-            type: 'POST',
-            url: '{{ route("tipe.getEditFormB") }}',
-            data: {
-                '_token': '<?php echo csrf_token(); ?>',
-                'id': type_id
-            },
-            success: function(data) {
-                $('#modalContentB').html(data.msg)
-            }
-        });
-    }
-
-    function saveDataUpdateTD(type_id) {
+    function saveDataTD(type_id) {
         var eName = $('#eName').val();
-        var eDesc = $('#eDesc').val();
         console.log(eName); //debug->print to browser console
         console.log(eDesc);
         $.ajax({
             type: 'POST',
-            url: '{{ route("tipe.saveDataTD") }}',
+            url: '{{ route("pType.saveDataTD") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'id': type_id,
                 'name': eName,
-                'desc': eDesc
             },
             success: function(data) {
                 if (data.status == "oke") {
                     $('#td_name_' + type_id).html(eName);
-                    $('#td_desc_' + type_id).html(eDesc);
                     $('#modalEditB').modal('hide');
                 }
             }
@@ -143,7 +126,7 @@
     function deleteDataRemoveTR(type_id) {
         $.ajax({
             type: 'POST',
-            url: '{{ route("tipe.deleteData") }}',
+            url: '{{ route("pType.deleteData") }}',
             data: {
                 '_token': '<?php echo csrf_token(); ?>',
                 'id': type_id
