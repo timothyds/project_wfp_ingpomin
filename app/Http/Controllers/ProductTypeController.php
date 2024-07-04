@@ -71,9 +71,18 @@ class ProductTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product_Type $product_Type)
+    public function destroy(string $id)
     {
-        //
+        try {
+            //if no contraint error, then delete data. Redirect to index after it.
+            $data = Product_Type::find($id);
+            $data->delete();
+            return redirect()->route('produkType.index')->with('status', 'Horray ! Your data is successfully deleted !');
+        } catch (\Throwable $th) {
+            // Failed to delete data, then show exception message
+            $msg = "Failed to delete data ! Make sure there is no related data before deleting it";
+            return redirect()->route('produk.index')->with('status', $msg);
+        }
     }
     public function getEditFormB(Request $request)
     {

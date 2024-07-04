@@ -173,7 +173,8 @@ class FrontEndController extends Controller
         return view('frontend.topMember',compact('user'));
     }
     public function topReserved(){
-        $top = DB::select('select product_id, COUNT(*) as reservation_count from product_transaction group by product_id order by reservation_count DESC');
+        $top = DB::select('select COUNT(DISTINCT(t.id)) AS jumlah, SUM(subtotal) AS total from transactions t LEFT JOIN product_transaction pt ON t.id = pt.transaction_id');
+        // dd($top);
         return view('frontend.topReserved',compact('top'));
     }
 

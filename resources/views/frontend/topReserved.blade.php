@@ -2,11 +2,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Customer with the Most Membership Points</h1>
-    @foreach($top as $t)
-    <p><strong>Product Id:</strong> {{ $t->product_id }}</p>
-    <p><strong>R:</strong> {{ $t->reservation_count }}</p>
+    <h1>Total Transaction</h1>
+    <p><strong>Jumlah Transaksi:</strong> {{ $top[0]->jumlah }}</p>
+    <p><strong>Total Jumlah Transaksi:</strong> {{ $top[0]->total }}</p>
     <br>
-    @endforeach
 </div>
 @endsection
